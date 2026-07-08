@@ -36,6 +36,7 @@ async function githubRequest<T>(pathName: string, init: RequestInit = {}) {
 
   const response = await fetch(`${githubApi}/repos/${config.repo}${pathName}`, {
     ...init,
+    cache: "no-store",
     headers: {
       Accept: "application/vnd.github+json",
       Authorization: `Bearer ${config.token}`,
