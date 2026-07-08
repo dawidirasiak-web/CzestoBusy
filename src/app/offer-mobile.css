@@ -1,0 +1,94 @@
+.vehicle-card > p,
+.vehicle-card h3,
+.vehicle-card ul,
+.vehicle-card .category-link {
+  position: relative;
+  z-index: 2;
+}
+
+.card-icon,
+.cargo-shape {
+  z-index: 0;
+  pointer-events: none;
+}
+
+.vehicle-card .category-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 30px;
+  margin-top: 96px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.vehicle-card .category-link svg {
+  width: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+@media (max-width: 600px) {
+  .vehicle-card {
+    min-height: 460px;
+    padding: 34px 28px;
+  }
+
+  .vehicle-card > p {
+    margin-top: 70px;
+  }
+
+  .vehicle-card h3 {
+    max-width: 260px;
+    font-size: 34px;
+    line-height: .95;
+  }
+
+  .vehicle-card ul {
+    max-width: 230px;
+    gap: 14px 18px;
+  }
+
+  .vehicle-card .category-link {
+    margin-top: 78px;
+    max-width: 210px;
+  }
+
+  .card-icon {
+    right: -6px;
+    bottom: -70px;
+    font-size: 250px;
+    opacity: .72;
+  }
+
+  .cargo-shape {
+    width: 265px;
+    height: 150px;
+    right: -64px;
+    bottom: 18px;
+    opacity: .82;
+  }
+
+  .cargo-shape:after {
+    right: 20px;
+    top: 18px;
+    width: 76px;
+    height: 48px;
+  }
+
+  .cargo-shape span,
+  .cargo-shape span:after {
+    width: 56px;
+    height: 56px;
+    bottom: -18px;
+  }
+
+  .cargo-shape span {
+    left: 36px;
+  }
+
+  .cargo-shape span:after {
+    left: 170px;
+  }
+}

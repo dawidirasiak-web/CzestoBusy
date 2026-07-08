@@ -12,6 +12,7 @@ import "./legal.css";
 import "./gallery.css";
 import "./motion.css";
 import "./category-page.css";
+import "./offer-mobile.css";
 import "./admin.css";
 import "./reveal.css";
 
