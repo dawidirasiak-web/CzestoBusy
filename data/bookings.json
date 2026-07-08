@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "id": "CB-2026-BD5AD1",
+    "vehicleId": "toyota-proace-max",
+    "vehicleName": "Toyota ProAce Max",
+    "startDate": "2026-08-01",
+    "endDate": "2026-08-08",
+    "pickupTime": "09:00",
+    "returnTime": "09:00",
+    "customerName": "Norbert Woldański",
+    "email": "",
+    "phone": "",
+    "notes": "",
+    "totalDays": 8,
+    "totalPrice": 1840,
+    "status": "confirmed",
+    "source": "phone",
+    "createdAt": "2026-07-08T21:20:55.522Z"
+  }
+]
