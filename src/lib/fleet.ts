@@ -1,6 +1,4 @@
-import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
-import path from "node:path";
-import { getDataDirectory } from "@/lib/data-directory";
+import { readJsonFile, writeJsonFile } from "@/lib/json-store";
 
 export type FleetCategory = "osobowe" | "dostawcze";
 
@@ -30,8 +28,6 @@ export const defaultFleet: FleetVehicle[] = [
   { id: "fiat-ducato-maxi-hd", name: "Fiat Ducato MAXI HD", type: "Kontener", category: "dostawcze", year: 2026, dailyPrice: 270, tone: "white", description: "Kontener do przewozu większych rzeczy i zadań wymagających pojemnej zabudowy.", features: ["Pełne ubezpieczenie", "Kontener"], images: gallery("fiat-ducato-maxi-hd", 7, "jpeg") },
 ];
 
-const dataDirectory = getDataDirectory();
-const fleetFile = path.join(dataDirectory, "fleet.json");
 let writeQueue = Promise.resolve();
 
 function normalizeVehicle(vehicle: FleetVehicle): FleetVehicle {
@@ -47,21 +43,12 @@ function normalizeVehicle(vehicle: FleetVehicle): FleetVehicle {
 }
 
 async function readFleetFile(): Promise<FleetVehicle[]> {
-  try {
-    const contents = await readFile(fleetFile, "utf8");
-    const vehicles = JSON.parse(contents) as FleetVehicle[];
-    return vehicles.map(normalizeVehicle);
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === "ENOENT") return defaultFleet;
-    throw error;
-  }
+  const vehicles = await readJsonFile<FleetVehicle[]>("fleet.json", defaultFleet);
+  return vehicles.map(normalizeVehicle);
 }
 
 async function saveFleet(vehicles: FleetVehicle[]) {
-  await mkdir(dataDirectory, { recursive: true });
-  const temporaryFile = `${fleetFile}.tmp`;
-  await writeFile(temporaryFile, JSON.stringify(vehicles.map(normalizeVehicle), null, 2), "utf8");
-  await rename(temporaryFile, fleetFile);
+  await writeJsonFile("fleet.json", vehicles.map(normalizeVehicle));
 }
 
 export async function listFleet() {

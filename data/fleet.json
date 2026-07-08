@@ -2,11 +2,16 @@
   {
     "id": "toyota-proace-business",
     "name": "Toyota ProAce Business",
-    "type": "9 os\u00f3b",
+    "type": "9 osob",
     "category": "osobowe",
     "year": 2025,
     "dailyPrice": 250,
     "tone": "black",
+    "description": "Komfortowy bus 9-osobowy na wspolne wyjazdy, delegacje i rodzinne trasy.",
+    "features": [
+      "Pelne ubezpieczenie",
+      "Klimatyzacja"
+    ],
     "images": [
       "/fleet/toyota-proace-business/01.jpg",
       "/fleet/toyota-proace-business/02.jpg",
@@ -14,21 +19,21 @@
       "/fleet/toyota-proace-business/04.jpg",
       "/fleet/toyota-proace-business/05.jpg",
       "/fleet/toyota-proace-business/06.jpg"
-    ],
-    "description": "Komfortowy bus 9-osobowy na wsp\u00f3lne wyjazdy, delegacje i rodzinne trasy.",
-    "features": [
-      "Pe\u0142ne ubezpieczenie",
-      "Klimatyzacja"
     ]
   },
   {
     "id": "toyota-proace",
     "name": "Toyota ProAce",
-    "type": "9 os\u00f3b",
+    "type": "9 osob",
     "category": "osobowe",
     "year": 2025,
     "dailyPrice": 200,
     "tone": "silver",
+    "description": "Przestronny bus 9-osobowy gotowy na krotkie i dluzsze podroze.",
+    "features": [
+      "Pelne ubezpieczenie",
+      "Klimatyzacja"
+    ],
     "images": [
       "/fleet/toyota-proace/01.jpg",
       "/fleet/toyota-proace/02.jpg",
@@ -41,11 +46,6 @@
       "/fleet/toyota-proace/09.jpg",
       "/fleet/toyota-proace/10.jpg",
       "/fleet/toyota-proace/11.jpg"
-    ],
-    "description": "Przestronny bus 9-osobowy gotowy na kr\u00f3tkie i d\u0142u\u017csze podr\u00f3\u017ce.",
-    "features": [
-      "Pe\u0142ne ubezpieczenie",
-      "Klimatyzacja"
     ]
   },
   {
@@ -56,17 +56,17 @@
     "year": 2025,
     "dailyPrice": 200,
     "tone": "red",
+    "description": "Wygodny SUV na wyjazdy prywatne, firmowe i codzienny wynajem.",
+    "features": [
+      "Pelne ubezpieczenie",
+      "Klimatyzacja"
+    ],
     "images": [
       "/fleet/chery-tiggo-7/01.jpg",
       "/fleet/chery-tiggo-7/02.jpg",
       "/fleet/chery-tiggo-7/03.jpg",
       "/fleet/chery-tiggo-7/04.jpg",
       "/fleet/chery-tiggo-7/05.jpg"
-    ],
-    "description": "Wygodny SUV na wyjazdy prywatne, firmowe i codzienny wynajem.",
-    "features": [
-      "Pe\u0142ne ubezpieczenie",
-      "Klimatyzacja"
     ]
   },
   {
@@ -77,6 +77,11 @@
     "year": 2025,
     "dailyPrice": 230,
     "tone": "white",
+    "description": "Pojemny samochod dostawczy do transportu, przeprowadzek i pracy.",
+    "features": [
+      "Pelne ubezpieczenie",
+      "Latwy zaladunek"
+    ],
     "images": [
       "/fleet/toyota-proace-max/01.jpeg",
       "/fleet/toyota-proace-max/02.jpeg",
@@ -85,11 +90,6 @@
       "/fleet/toyota-proace-max/05.jpeg",
       "/fleet/toyota-proace-max/06.jpeg",
       "/fleet/toyota-proace-max/07.jpeg"
-    ],
-    "description": "Pojemny samoch\u00f3d dostawczy do transportu, przeprowadzek i pracy.",
-    "features": [
-      "Pe\u0142ne ubezpieczenie",
-      "Du\u017ca przestrze\u0144"
     ]
   },
   {
@@ -100,16 +100,16 @@
     "year": 2025,
     "dailyPrice": 250,
     "tone": "graphite",
+    "description": "Duzy dostawczak dla wiekszego ladunku i elastycznych zlecen.",
+    "features": [
+      "Pelne ubezpieczenie",
+      "Duza przestrzen"
+    ],
     "images": [
       "/fleet/fiat-ducato-maxi/01.jpg",
       "/fleet/fiat-ducato-maxi/02.jpg",
       "/fleet/fiat-ducato-maxi/03.jpg",
       "/fleet/fiat-ducato-maxi/04.jpg"
-    ],
-    "description": "Du\u017cy dostawczak dla wi\u0119kszego \u0142adunku i elastycznych zlece\u0144.",
-    "features": [
-      "Pe\u0142ne ubezpieczenie",
-      "Du\u017ca przestrze\u0144"
     ]
   },
   {
@@ -120,6 +120,11 @@
     "year": 2026,
     "dailyPrice": 270,
     "tone": "white",
+    "description": "Kontener do przewozu wiekszych rzeczy i zadan wymagajacych pojemnej zabudowy.",
+    "features": [
+      "Pelne ubezpieczenie",
+      "Kontener"
+    ],
     "images": [
       "/fleet/fiat-ducato-maxi-hd/01.jpeg",
       "/fleet/fiat-ducato-maxi-hd/02.jpeg",
@@ -128,11 +133,6 @@
       "/fleet/fiat-ducato-maxi-hd/05.jpeg",
       "/fleet/fiat-ducato-maxi-hd/06.jpeg",
       "/fleet/fiat-ducato-maxi-hd/07.jpeg"
-    ],
-    "description": "Kontener do przewozu wi\u0119kszych rzeczy i zada\u0144 wymagaj\u0105cych pojemnej zabudowy.",
-    "features": [
-      "Pe\u0142ne ubezpieczenie",
-      "Kontener"
     ]
   }
 ]

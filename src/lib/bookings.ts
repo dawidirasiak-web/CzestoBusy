@@ -1,6 +1,4 @@
-import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
-import path from "node:path";
-import { getDataDirectory } from "@/lib/data-directory";
+import { readJsonFile, writeJsonFile } from "@/lib/json-store";
 
 export type Booking = {
   id: string;
@@ -21,18 +19,10 @@ export type Booking = {
   createdAt: string;
 };
 
-const dataDirectory = getDataDirectory();
-const bookingsFile = path.join(dataDirectory, "bookings.json");
 let writeQueue = Promise.resolve();
 
 async function readBookings(): Promise<Booking[]> {
-  try {
-    const contents = await readFile(bookingsFile, "utf8");
-    return JSON.parse(contents) as Booking[];
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === "ENOENT") return [];
-    throw error;
-  }
+  return readJsonFile<Booking[]>("bookings.json", []);
 }
 
 export async function getBookedRanges(vehicleId: string) {
@@ -83,17 +73,13 @@ export async function deleteBooking(id: string) {
 }
 
 async function saveBookings(bookings: Booking[]) {
-  await mkdir(dataDirectory, { recursive: true });
-  const temporaryFile = `${bookingsFile}.tmp`;
-  await writeFile(temporaryFile, JSON.stringify(bookings, null, 2), "utf8");
-  await rename(temporaryFile, bookingsFile);
+  await writeJsonFile("bookings.json", bookings);
 }
 
 export async function createBooking(booking: Booking) {
   let result: Booking | null = null;
 
   const operation = writeQueue.catch(() => undefined).then(async () => {
-    await mkdir(dataDirectory, { recursive: true });
     const bookings = await readBookings();
     const conflicts = bookings.some(
       (item) =>
