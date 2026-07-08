@@ -19,7 +19,7 @@ function sign(value: string) {
 export function verifyAdminPassword(password: string) {
   const expected = process.env.ADMIN_PASSWORD;
   if (!expected) throw new Error("ADMIN_PASSWORD is not configured");
-  if (process.env.NODE_ENV === "production" && (expected.length < 12 || expected.includes("change-this"))) throw new Error("ADMIN_PASSWORD must be changed in production");
+  if (process.env.NODE_ENV === "production" && (expected.length < 8 || expected.includes("change-this"))) throw new Error("ADMIN_PASSWORD must be changed in production");
   const suppliedBuffer = Buffer.from(password);
   const expectedBuffer = Buffer.from(expected);
   return suppliedBuffer.length === expectedBuffer.length && timingSafeEqual(suppliedBuffer, expectedBuffer);
