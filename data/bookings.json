@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "id": "CB-2026-438B54",
+    "vehicleId": "toyota-proace",
+    "vehicleName": "Toyota ProAce",
+    "startDate": "2026-07-15",
+    "endDate": "2026-07-22",
+    "pickupTime": "09:00",
+    "returnTime": "09:00",
+    "customerName": "Norbert Woldański",
+    "email": "",
+    "phone": "+48530337387",
+    "notes": "",
+    "totalDays": 8,
+    "totalPrice": 1600,
+    "status": "confirmed",
+    "source": "phone",
+    "createdAt": "2026-07-08T21:29:07.379Z"
+  }
+]
