@@ -37,3 +37,6 @@ Thumbs.db
 # local assistant/tooling state
 .agents/
 .codex/
+
+.vercel/
+.env*.local
