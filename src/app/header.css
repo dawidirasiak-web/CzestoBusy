@@ -49,17 +49,13 @@
   border-radius: 50%;
   background: #fff;
   color: var(--ink);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0;
-  text-transform: uppercase;
   transition: border-color .2s ease, color .2s ease, transform .2s ease;
 }
 
-.header-socials a:first-child {
-  font-size: 20px;
-  font-family: Arial, sans-serif;
-  text-transform: none;
+.header-socials svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
 }
 
 .header-socials a:hover,
@@ -122,11 +118,11 @@
   .header-socials a {
     width: 34px;
     height: 34px;
-    font-size: 11px;
   }
 
-  .header-socials a:first-child {
-    font-size: 18px;
+  .header-socials svg {
+    width: 16px;
+    height: 16px;
   }
 
   .availability-phone strong {
