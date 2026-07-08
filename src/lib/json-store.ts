@@ -54,6 +54,7 @@ async function githubRequest<T>(pathName: string, init: RequestInit = {}) {
 }
 
 async function readFromGitHub(fileName: string) {
+  if (process.env.NEXT_PHASE === "phase-production-build") return null;
   const config = githubConfig();
   if (!config) return null;
   const filePath = `data/${fileName}`;
