@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HeaderSocials } from "@/components/header-socials";
 import { SiteLogo } from "@/components/site-logo";
 
 export const metadata: Metadata = {
@@ -60,6 +61,7 @@ export default function TermsPage() {
       <header className="site-header header-clean">
         <SiteLogo />
         <nav aria-label="Nawigacja główna"><Link href="/#flota">Flota</Link><Link href="/#dlaczego-my">Dlaczego my</Link><a href="tel:+48883066661">Kontakt</a></nav>
+        <HeaderSocials />
       </header>
 
       <section className="legal-hero"><Link href="/">← Wróć na stronę główną</Link><p className="eyebrow"><span/> Dokumenty</p><h1>Regulamin<br/><em>CzęstoBusy</em></h1><p>Zasady rezerwacji, wynajmu, użytkowania oraz zwrotu pojazdów.</p></section>

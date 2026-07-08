@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ScrollVan } from "@/components/scroll-van";
 import { FleetReveal } from "@/components/fleet-reveal";
+import { HeaderSocials } from "@/components/header-socials";
 import { SiteLogo } from "@/components/site-logo";
 import { listFleet } from "@/lib/fleet";
 
@@ -56,6 +57,7 @@ export default async function Home() {
         <nav aria-label="Nawigacja główna">
           <a href="#flota">Flota</a><a href="#dlaczego-my">Dlaczego my</a><a href="tel:+48883066661">Kontakt</a>
         </nav>
+        <HeaderSocials />
       </header>
 
       <section className="hero" id="start">

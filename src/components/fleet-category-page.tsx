@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { listFleet } from "@/lib/fleet";
+import { HeaderSocials } from "@/components/header-socials";
 import { SiteLogo } from "@/components/site-logo";
 
 const ArrowIcon = () => <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg>;
@@ -30,7 +31,7 @@ export async function FleetCategoryPage({ category }: { category: Category }) {
 
   return (
     <main className="category-page">
-      <header className="site-header header-clean"><SiteLogo/><nav aria-label="Nawigacja główna"><Link href="/#flota">Flota</Link><Link href="/#dlaczego-my">Dlaczego my</Link><a href="tel:+48883066661">Kontakt</a></nav></header>
+      <header className="site-header header-clean"><SiteLogo/><nav aria-label="Nawigacja główna"><Link href="/#flota">Flota</Link><Link href="/#dlaczego-my">Dlaczego my</Link><a href="tel:+48883066661">Kontakt</a></nav><HeaderSocials /></header>
 
       <section className="category-hero"><div><Link className="back-link" href="/#oferta">← Wróć do oferty</Link><p className="eyebrow"><span/> {page.label}</p><h1>{page.title}</h1><p>{page.description}</p></div><div className="category-benefits">{page.benefits.map((benefit, index) => <div key={benefit}><span>0{index + 1}</span><strong>{benefit}</strong></div>)}</div></section>
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HeaderSocials } from "@/components/header-socials";
 import { SiteLogo } from "@/components/site-logo";
 
 export const metadata: Metadata = {
@@ -56,6 +57,7 @@ export default function PrivacyPolicyPage() {
       <header className="site-header header-clean">
         <SiteLogo />
         <nav aria-label="Nawigacja główna"><Link href="/#flota">Flota</Link><Link href="/#dlaczego-my">Dlaczego my</Link><a href="tel:+48883066661">Kontakt</a></nav>
+        <HeaderSocials />
       </header>
 
       <section className="legal-hero"><Link href="/">← Wróć na stronę główną</Link><p className="eyebrow"><span/> Dokumenty</p><h1>Polityka prywatności<br/><em>i plików cookies</em></h1><p>Jasne zasady dotyczące danych osobowych i korzystania z serwisu CzęstoBusy.</p></section>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ReservationForm } from "@/components/reservation-form";
+import { HeaderSocials } from "@/components/header-socials";
 import { SiteLogo } from "@/components/site-logo";
 import { VehicleGallery } from "@/components/vehicle-gallery";
 import { getBookedRanges } from "@/lib/bookings";
@@ -33,6 +34,7 @@ export default async function VehiclePage({ params }: PageProps) {
       <header className="site-header vehicle-header header-clean">
         <SiteLogo />
         <nav aria-label="Nawigacja główna"><Link href="/#flota">Flota</Link><a href="#kalendarz">Kalendarz</a><Link href="/#kontakt">Kontakt</Link></nav>
+        <HeaderSocials />
       </header>
 
       <section className="vehicle-hero">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { HeaderSocials } from "@/components/header-socials";
 import { SiteLogo } from "@/components/site-logo";
 
 export const metadata: Metadata = {
@@ -29,7 +30,7 @@ const questions: Array<{ question: string; answer: ReactNode }> = [
 export default function FaqPage() {
   return (
     <main className="legal-page faq-page">
-      <header className="site-header header-clean"><SiteLogo/><nav aria-label="Nawigacja główna"><Link href="/#flota">Flota</Link><Link href="/#dlaczego-my">Dlaczego my</Link><a href="tel:+48883066661">Kontakt</a></nav></header>
+      <header className="site-header header-clean"><SiteLogo/><nav aria-label="Nawigacja główna"><Link href="/#flota">Flota</Link><Link href="/#dlaczego-my">Dlaczego my</Link><a href="tel:+48883066661">Kontakt</a></nav><HeaderSocials /></header>
       <section className="legal-hero"><Link href="/">← Wróć na stronę główną</Link><p className="eyebrow"><span/> Pomoc</p><h1>Najczęstsze<br/><em>pytania.</em></h1><p>Najważniejsze informacje dotyczące rezerwacji, dokumentów, płatności i użytkowania pojazdów.</p></section>
       <section className="faq-content">{questions.map(({ question, answer }, index) => <details key={question}><summary><span>{String(index + 1).padStart(2, "0")}</span><strong>{question}</strong><i aria-hidden="true">+</i></summary><div className="faq-answer">{answer}</div></details>)}</section>
       <footer><Link className="brand footer-brand" href="/"><span>CZĘSTO</span><strong>BUSY</strong></Link><FooterLinks/><p>© 2026 CzęstoBusy</p></footer>
