@@ -27,32 +27,37 @@ export function AdminQuickBooking({ bookings, vehicles, onCreated }: { bookings:
   function selectDate(date: string) {
     setMessage("");
     if (!startDate || endDate || date < startDate) { setStartDate(date); setEndDate(""); return; }
-    if (bookedRanges.some((range) => range.startDate <= date && range.endDate >= startDate)) { setMessage("Wybrany zakres obejmuje zajęty termin."); return; }
+    if (bookedRanges.some((range) => range.startDate <= date && range.endDate >= startDate)) { setMessage("Wybrany zakres obejmuje zajety termin."); return; }
     setEndDate(date);
   }
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!startDate || !endDate) { setMessage("Wybierz pierwszy i ostatni dzień rezerwacji."); return; }
+    if (!startDate || !endDate) { setMessage("Wybierz pierwszy i ostatni dzien rezerwacji."); return; }
     setPending(true);
     setMessage("");
     const form = event.currentTarget;
     const payload = { ...Object.fromEntries(new FormData(form)), vehicleId, startDate, endDate };
     const response = await fetch("/api/admin/bookings", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
     const result = (await response.json()) as { error?: string };
-    if (!response.ok) { setMessage(result.error || "Nie udało się zapisać rezerwacji."); setPending(false); return; }
+    if (!response.ok) { setMessage(result.error || "Nie udalo sie zapisac rezerwacji."); setPending(false); return; }
     form.reset();
     setStartDate("");
     setEndDate("");
-    setMessage("Rezerwacja została zapisana.");
+    setMessage("Rezerwacja zostala zapisana.");
     setPending(false);
     await onCreated();
   }
 
   return <form className="admin-quick-form" onSubmit={submit}>
-    <div className="quick-fields"><label>Pojazd<select value={vehicleId} onChange={(event) => { setVehicleId(event.target.value); setStartDate(""); setEndDate(""); }}>{vehicles.map((vehicle) => <option value={vehicle.id} key={vehicle.id}>{vehicle.name}</option>)}</select></label><label>Imię (opcjonalnie)<input name="customerName" autoComplete="name"/></label><label>Telefon (opcjonalnie)<input name="phone" type="tel" autoComplete="tel"/></label></div>
-    <div className="quick-calendar-header"><div><strong>Wybierz termin</strong><span>Kliknij dzień odbioru, potem dzień zwrotu</span></div><div><button disabled={month <= currentMonth} onClick={() => setMonth(new Date(month.getFullYear(), month.getMonth() - 1, 1))} type="button">←</button><strong>{new Intl.DateTimeFormat("pl-PL", { month: "long", year: "numeric" }).format(month)}</strong><button onClick={() => setMonth(new Date(month.getFullYear(), month.getMonth() + 1, 1))} type="button">→</button></div></div>
-    <div className="quick-weekdays">{["Pn", "Wt", "Śr", "Cz", "Pt", "So", "Nd"].map((day) => <span key={day}>{day}</span>)}</div>
+    <div className="quick-fields">
+      <label>Pojazd<select value={vehicleId} onChange={(event) => { setVehicleId(event.target.value); setStartDate(""); setEndDate(""); }}>{vehicles.map((vehicle) => <option value={vehicle.id} key={vehicle.id}>{vehicle.name}</option>)}</select></label>
+      <label>Imie (opcjonalnie)<input name="customerName" autoComplete="name"/></label>
+      <label>Telefon (opcjonalnie)<input name="phone" type="tel" autoComplete="tel"/></label>
+      <label>Kwota razem (opcjonalnie)<input name="customTotalPrice" type="number" min="0" step="1" inputMode="numeric" placeholder="Np. 1200"/></label>
+    </div>
+    <div className="quick-calendar-header"><div><strong>Wybierz termin</strong><span>Kliknij dzien odbioru, potem dzien zwrotu</span></div><div><button disabled={month <= currentMonth} onClick={() => setMonth(new Date(month.getFullYear(), month.getMonth() - 1, 1))} type="button">{"<"}</button><strong>{new Intl.DateTimeFormat("pl-PL", { month: "long", year: "numeric" }).format(month)}</strong><button onClick={() => setMonth(new Date(month.getFullYear(), month.getMonth() + 1, 1))} type="button">{">"}</button></div></div>
+    <div className="quick-weekdays">{["Pn", "Wt", "Sr", "Cz", "Pt", "So", "Nd"].map((day) => <span key={day}>{day}</span>)}</div>
     <div className="quick-days">{cells.map((date, index) => {
       if (!date) return <span key={`empty-${index}`}/>;
       const iso = toIsoDate(date);
@@ -61,8 +66,8 @@ export function AdminQuickBooking({ bookings, vehicles, onCreated }: { bookings:
       const inRange = Boolean(startDate && endDate && iso > startDate && iso < endDate);
       return <button className={`${booked ? "booked" : ""} ${selected ? "selected" : ""} ${inRange ? "in-range" : ""}`} disabled={booked || iso < today} key={iso} onClick={() => selectDate(iso)} type="button"><span>{date.getDate()}</span></button>;
     })}</div>
-    <div className="quick-summary"><div><small>Od</small><strong>{startDate || "Wybierz dzień"}</strong></div><span>→</span><div><small>Do</small><strong>{endDate || "Wybierz dzień"}</strong></div></div>
+    <div className="quick-summary"><div><small>Od</small><strong>{startDate || "Wybierz dzien"}</strong></div><span>{"->"}</span><div><small>Do</small><strong>{endDate || "Wybierz dzien"}</strong></div></div>
     {message && <p className="quick-message" role="status">{message}</p>}
-    <button className="admin-primary quick-submit" disabled={pending} type="submit">{pending ? "Zapisywanie..." : "Zapisz rezerwację"}</button>
+    <button className="admin-primary quick-submit" disabled={pending} type="submit">{pending ? "Zapisywanie..." : "Zapisz rezerwacje"}</button>
   </form>;
 }

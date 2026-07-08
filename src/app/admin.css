@@ -118,7 +118,7 @@
 .image-field-row label { color: #777; }
 .image-field-row label > span { color: #9a9a9a; }
 .image-field-row .danger { color: var(--red); }
-.quick-fields { display: grid; grid-template-columns: 1.35fr 1fr 1fr; gap: 12px; }
+.quick-fields { display: grid; grid-template-columns: 1.35fr 1fr 1fr 1fr; gap: 12px; }
 .quick-fields input, .quick-fields select { width: 100%; margin-top: 7px; border: 1px solid #3c3d40; background: #232427; color: #fff; padding: 13px; outline: 0; }
 .quick-fields input:focus, .quick-fields select:focus { border-color: var(--red); background: #232427; color: #fff; }
 .quick-fields select option { background: #fff; color: #17181a; }

@@ -13,8 +13,11 @@ export async function POST(request: Request) {
   if (!(await isAdminAuthenticated())) return Response.json({ error: "Brak autoryzacji." }, { status: 401 });
 
   let body: Record<string, unknown>;
-  try { body = (await request.json()) as Record<string, unknown>; }
-  catch { return Response.json({ error: "Nieprawidłowe dane formularza." }, { status: 400 }); }
+  try {
+    body = (await request.json()) as Record<string, unknown>;
+  } catch {
+    return Response.json({ error: "Nieprawidlowe dane formularza." }, { status: 400 });
+  }
 
   const text = (key: string) => typeof body[key] === "string" ? body[key].trim() : "";
   const vehicle = await findVehicle(text("vehicleId"));
@@ -24,11 +27,20 @@ export async function POST(request: Request) {
   const phone = text("phone");
   const pickupTime = "09:00";
   const returnTime = "09:00";
+  const customTotalPriceText = text("customTotalPrice");
+  const customTotalPrice = customTotalPriceText ? Number(customTotalPriceText) : null;
   const datePattern = /^\d{4}-\d{2}-\d{2}$/;
   const timePattern = /^\d{2}:\d{2}$/;
 
-  if (!vehicle || !datePattern.test(startDate) || !datePattern.test(endDate) || endDate < startDate) return Response.json({ error: "Wybierz pojazd i prawidłowy termin." }, { status: 400 });
-  if (!timePattern.test(pickupTime) || !timePattern.test(returnTime)) return Response.json({ error: "Nieprawidłowe godziny rezerwacji." }, { status: 400 });
+  if (!vehicle || !datePattern.test(startDate) || !datePattern.test(endDate) || endDate < startDate) {
+    return Response.json({ error: "Wybierz pojazd i prawidlowy termin." }, { status: 400 });
+  }
+  if (!timePattern.test(pickupTime) || !timePattern.test(returnTime)) {
+    return Response.json({ error: "Nieprawidlowe godziny rezerwacji." }, { status: 400 });
+  }
+  if (customTotalPrice !== null && (!Number.isFinite(customTotalPrice) || customTotalPrice < 0)) {
+    return Response.json({ error: "Podaj prawidlowa kwote rezerwacji." }, { status: 400 });
+  }
 
   const totalDays = Math.max(1, Math.ceil((Date.parse(endDate) - Date.parse(startDate)) / 86_400_000) + 1);
   const booking: Booking = {
@@ -44,17 +56,20 @@ export async function POST(request: Request) {
     phone,
     notes: "",
     totalDays,
-    totalPrice: totalDays * vehicle.dailyPrice,
+    totalPrice: customTotalPrice ?? totalDays * vehicle.dailyPrice,
     status: "confirmed",
     source: "phone",
     createdAt: new Date().toISOString(),
   };
 
-  try { await createBooking(booking); }
-  catch (error) {
-    if (error instanceof Error && error.message === "BOOKING_CONFLICT") return Response.json({ error: "Pojazd jest już zajęty w wybranym terminie." }, { status: 409 });
+  try {
+    await createBooking(booking);
+  } catch (error) {
+    if (error instanceof Error && error.message === "BOOKING_CONFLICT") {
+      return Response.json({ error: "Pojazd jest juz zajety w wybranym terminie." }, { status: 409 });
+    }
     console.error("Admin booking creation failed", error);
-    return Response.json({ error: "Nie udało się zapisać rezerwacji." }, { status: 500 });
+    return Response.json({ error: "Nie udalo sie zapisac rezerwacji." }, { status: 500 });
   }
   return Response.json({ booking }, { status: 201 });
 }
