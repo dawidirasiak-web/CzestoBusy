@@ -30,10 +30,18 @@ function isRateLimited(key: string) {
   return current.count >= maxAttempts;
 }
 
+function configurationErrorResponse(error: unknown) {
+  const message = error instanceof Error ? error.message : "";
+  const isConfigurationError = message.startsWith("ADMIN_PASSWORD") || message.startsWith("ADMIN_SESSION_SECRET");
+  if (!isConfigurationError) return null;
+  console.error(message);
+  return Response.json({ error: "Panel admina nie ma ustawionych zmiennych \u015brodowiskowych w Vercel." }, { status: 500 });
+}
+
 export async function POST(request: Request) {
   const key = clientKey(request);
   if (isRateLimited(key)) {
-    return Response.json({ error: "Zbyt wiele prób logowania. Spróbuj ponownie za kilka minut." }, { status: 429 });
+    return Response.json({ error: "Zbyt wiele pr\u00f3b logowania. Spr\u00f3buj ponownie za kilka minut." }, { status: 429 });
   }
 
   let password = "";
@@ -41,17 +49,23 @@ export async function POST(request: Request) {
     const body = (await request.json()) as { password?: unknown };
     password = typeof body.password === "string" ? body.password : "";
   } catch {
-    return Response.json({ error: "Nieprawidłowe dane logowania." }, { status: 400 });
+    return Response.json({ error: "Nieprawid\u0142owe dane logowania." }, { status: 400 });
   }
 
-  if (!verifyAdminPassword(password)) {
-    registerFailedAttempt(key);
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    return Response.json({ error: "Nieprawidłowe hasło." }, { status: 401 });
-  }
+  try {
+    if (!verifyAdminPassword(password)) {
+      registerFailedAttempt(key);
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      return Response.json({ error: "Nieprawid\u0142owe has\u0142o." }, { status: 401 });
+    }
 
-  failedAttempts.delete(key);
-  const response = Response.json({ success: true });
-  response.headers.append("Set-Cookie", `${ADMIN_COOKIE}=${createAdminSessionToken()}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${SESSION_DURATION_SECONDS}${process.env.NODE_ENV === "production" ? "; Secure" : ""}`);
-  return response;
+    failedAttempts.delete(key);
+    const response = Response.json({ success: true });
+    response.headers.append("Set-Cookie", `${ADMIN_COOKIE}=${createAdminSessionToken()}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${SESSION_DURATION_SECONDS}${process.env.NODE_ENV === "production" ? "; Secure" : ""}`);
+    return response;
+  } catch (error) {
+    const response = configurationErrorResponse(error);
+    if (response) return response;
+    throw error;
+  }
 }
