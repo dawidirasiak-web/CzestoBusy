@@ -1,0 +1,138 @@
+[
+  {
+    "id": "toyota-proace-business",
+    "name": "Toyota ProAce Business",
+    "type": "9 os\u00f3b",
+    "category": "osobowe",
+    "year": 2025,
+    "dailyPrice": 250,
+    "tone": "black",
+    "images": [
+      "/fleet/toyota-proace-business/01.jpg",
+      "/fleet/toyota-proace-business/02.jpg",
+      "/fleet/toyota-proace-business/03.jpg",
+      "/fleet/toyota-proace-business/04.jpg",
+      "/fleet/toyota-proace-business/05.jpg",
+      "/fleet/toyota-proace-business/06.jpg"
+    ],
+    "description": "Komfortowy bus 9-osobowy na wsp\u00f3lne wyjazdy, delegacje i rodzinne trasy.",
+    "features": [
+      "Pe\u0142ne ubezpieczenie",
+      "Klimatyzacja"
+    ]
+  },
+  {
+    "id": "toyota-proace",
+    "name": "Toyota ProAce",
+    "type": "9 os\u00f3b",
+    "category": "osobowe",
+    "year": 2025,
+    "dailyPrice": 200,
+    "tone": "silver",
+    "images": [
+      "/fleet/toyota-proace/01.jpg",
+      "/fleet/toyota-proace/02.jpg",
+      "/fleet/toyota-proace/03.jpg",
+      "/fleet/toyota-proace/04.jpg",
+      "/fleet/toyota-proace/05.jpg",
+      "/fleet/toyota-proace/06.jpg",
+      "/fleet/toyota-proace/07.jpg",
+      "/fleet/toyota-proace/08.jpg",
+      "/fleet/toyota-proace/09.jpg",
+      "/fleet/toyota-proace/10.jpg",
+      "/fleet/toyota-proace/11.jpg"
+    ],
+    "description": "Przestronny bus 9-osobowy gotowy na kr\u00f3tkie i d\u0142u\u017csze podr\u00f3\u017ce.",
+    "features": [
+      "Pe\u0142ne ubezpieczenie",
+      "Klimatyzacja"
+    ]
+  },
+  {
+    "id": "chery-tiggo-7",
+    "name": "Chery Tiggo 7",
+    "type": "SUV",
+    "category": "osobowe",
+    "year": 2025,
+    "dailyPrice": 200,
+    "tone": "red",
+    "images": [
+      "/fleet/chery-tiggo-7/01.jpg",
+      "/fleet/chery-tiggo-7/02.jpg",
+      "/fleet/chery-tiggo-7/03.jpg",
+      "/fleet/chery-tiggo-7/04.jpg",
+      "/fleet/chery-tiggo-7/05.jpg"
+    ],
+    "description": "Wygodny SUV na wyjazdy prywatne, firmowe i codzienny wynajem.",
+    "features": [
+      "Pe\u0142ne ubezpieczenie",
+      "Klimatyzacja"
+    ]
+  },
+  {
+    "id": "toyota-proace-max",
+    "name": "Toyota ProAce Max",
+    "type": "Dostawczy",
+    "category": "dostawcze",
+    "year": 2025,
+    "dailyPrice": 230,
+    "tone": "white",
+    "images": [
+      "/fleet/toyota-proace-max/01.jpeg",
+      "/fleet/toyota-proace-max/02.jpeg",
+      "/fleet/toyota-proace-max/03.jpeg",
+      "/fleet/toyota-proace-max/04.jpeg",
+      "/fleet/toyota-proace-max/05.jpeg",
+      "/fleet/toyota-proace-max/06.jpeg",
+      "/fleet/toyota-proace-max/07.jpeg"
+    ],
+    "description": "Pojemny samoch\u00f3d dostawczy do transportu, przeprowadzek i pracy.",
+    "features": [
+      "Pe\u0142ne ubezpieczenie",
+      "Du\u017ca przestrze\u0144"
+    ]
+  },
+  {
+    "id": "fiat-ducato-maxi",
+    "name": "Fiat Ducato MAXI",
+    "type": "Dostawczy",
+    "category": "dostawcze",
+    "year": 2025,
+    "dailyPrice": 250,
+    "tone": "graphite",
+    "images": [
+      "/fleet/fiat-ducato-maxi/01.jpg",
+      "/fleet/fiat-ducato-maxi/02.jpg",
+      "/fleet/fiat-ducato-maxi/03.jpg",
+      "/fleet/fiat-ducato-maxi/04.jpg"
+    ],
+    "description": "Du\u017cy dostawczak dla wi\u0119kszego \u0142adunku i elastycznych zlece\u0144.",
+    "features": [
+      "Pe\u0142ne ubezpieczenie",
+      "Du\u017ca przestrze\u0144"
+    ]
+  },
+  {
+    "id": "fiat-ducato-maxi-hd",
+    "name": "Fiat Ducato MAXI HD",
+    "type": "Kontener",
+    "category": "dostawcze",
+    "year": 2026,
+    "dailyPrice": 270,
+    "tone": "white",
+    "images": [
+      "/fleet/fiat-ducato-maxi-hd/01.jpeg",
+      "/fleet/fiat-ducato-maxi-hd/02.jpeg",
+      "/fleet/fiat-ducato-maxi-hd/03.jpeg",
+      "/fleet/fiat-ducato-maxi-hd/04.jpeg",
+      "/fleet/fiat-ducato-maxi-hd/05.jpeg",
+      "/fleet/fiat-ducato-maxi-hd/06.jpeg",
+      "/fleet/fiat-ducato-maxi-hd/07.jpeg"
+    ],
+    "description": "Kontener do przewozu wi\u0119kszych rzeczy i zada\u0144 wymagaj\u0105cych pojemnej zabudowy.",
+    "features": [
+      "Pe\u0142ne ubezpieczenie",
+      "Kontener"
+    ]
+  }
+]

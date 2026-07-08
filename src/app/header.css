@@ -1,0 +1,79 @@
+.site-header.header-clean {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  height: 104px;
+}
+
+.header-clean .brand {
+  justify-self: start;
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 94px;
+  line-height: 1;
+}
+
+.site-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.header-clean nav {
+  grid-column: 2;
+  justify-self: center;
+  gap: 54px;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+@media (min-width: 601px) {
+  .hero {
+    min-height: calc(100vh - 104px);
+  }
+}
+
+.availability-phone {
+  color: var(--ink);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.availability-phone:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, .17);
+}
+
+.availability-phone strong {
+  font: 800 20px var(--font-display);
+  letter-spacing: .5px;
+}
+
+.availability-phone:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 4px;
+}
+
+@media (max-width: 900px) {
+  .site-header.header-clean {
+    display: flex;
+  }
+}
+
+@media (max-width: 600px) {
+  .site-header.header-clean {
+    height: 82px;
+  }
+
+  .site-logo {
+    width: 155px;
+    height: 72px;
+  }
+
+  .availability-phone strong {
+    font-size: 18px;
+  }
+}

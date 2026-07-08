@@ -1,0 +1,11 @@
+.category-hero { display: grid; grid-template-columns: 1.2fr .8fr; align-items: end; gap: 8vw; padding: 80px clamp(24px, 7vw, 110px); background: var(--black); color: #fff; }
+.category-hero h1 { font-size: clamp(62px, 7vw, 108px); }
+.category-hero > div:first-child > p:last-child { max-width: 650px; margin: 30px 0 0; color: #999; font-size: 14px; line-height: 1.8; }
+.category-hero .back-link { color: #777; }
+.category-benefits { border-top: 1px solid #353638; }
+.category-benefits > div { display: grid; grid-template-columns: 45px 1fr; gap: 15px; padding: 22px 0; border-bottom: 1px solid #353638; }
+.category-benefits span { color: var(--red); font: 800 10px var(--font-display); }
+.category-benefits strong { font: 700 20px var(--font-display); text-transform: uppercase; }
+.category-fleet { background: #ecebe7; }
+@media (max-width: 900px) { .category-hero { grid-template-columns: 1fr; gap: 50px; } }
+@media (max-width: 600px) { .category-hero { padding: 55px 24px; } .category-hero .back-link { margin-bottom: 40px; } .category-hero h1 { font-size: 62px; } .category-benefits { margin-top: 5px; } }

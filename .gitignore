@@ -1,0 +1,39 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+
+# production bundles generated locally
+deploy-lh/
+*.zip
+
+# local env files
+.env
+.env*.local
+!.env.example
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# typescript
+*.tsbuildinfo
+
+# os/editor
+.DS_Store
+Thumbs.db
+
+# certificates and secrets
+*.pem
+*.key
+
+# vercel local project state
+.vercel/
+
+# local assistant/tooling state
+.agents/
+.codex/

@@ -1,0 +1,62 @@
+.scroll-van {
+  position: relative;
+  z-index: 1;
+  width: 108%;
+  margin-left: -12%;
+  will-change: transform;
+}
+
+.scroll-van .van-illustration {
+  width: 100%;
+  margin-left: 0;
+}
+
+.scroll-van .van-photo-stage {
+  position: relative;
+  width: 100%;
+  filter: drop-shadow(0 20px 16px rgba(0, 0, 0, .2));
+}
+
+.scroll-van .van-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.scroll-van .van-wheel {
+  position: absolute;
+  top: 62.17%;
+  width: 13.77%;
+  height: auto;
+  transform: rotate(var(--wheel-turn, 0deg));
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.scroll-van .van-wheel-rear {
+  left: 11.3%;
+}
+
+.scroll-van .van-wheel-front {
+  left: 72.08%;
+}
+
+@media (max-width: 600px) {
+  .scroll-van {
+    width: 120%;
+    margin-left: -15%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-van {
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .scroll-van .van-wheel {
+    transform: none !important;
+    will-change: auto;
+  }
+}

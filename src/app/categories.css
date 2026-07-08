@@ -1,0 +1,56 @@
+.vehicle-card {
+  display: block;
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .09);
+}
+
+.vehicle-card:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 4px;
+}
+
+.category-link {
+  position: absolute;
+  z-index: 3;
+  bottom: 36px;
+  left: 46px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.category-link svg {
+  width: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.fleet-card[id] {
+  scroll-margin-top: 24px;
+}
+
+.fleet-card[id]:target {
+  animation: fleet-target 1.4s ease;
+}
+
+@keyframes fleet-target {
+  0%, 35% { box-shadow: 0 0 0 4px var(--red), 0 22px 55px rgba(0, 0, 0, .13); }
+  100% { box-shadow: none; }
+}
+
+@media (max-width: 600px) {
+  .vehicle-card:hover { transform: none; }
+  .category-link { left: 32px; bottom: 32px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fleet-card[id]:target { animation: none; outline: 3px solid var(--red); }
+}

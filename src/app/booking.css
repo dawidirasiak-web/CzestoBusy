@@ -1,0 +1,46 @@
+.reservation { background: #f5f4f1; }
+.reservation-heading { max-width: 760px; margin-bottom: 55px; }
+.reservation-heading h2 { font-size: clamp(48px, 5.5vw, 82px); }
+.reservation-heading > p:last-child { max-width: 620px; color: var(--muted); line-height: 1.8; margin-top: 28px; }
+.reservation-form { background: #fff; padding: clamp(24px, 4vw, 55px); box-shadow: 0 18px 60px rgba(0, 0, 0, .07); }
+.form-step { display: flex; gap: 20px; align-items: flex-start; margin: 12px 0 24px; padding-top: 28px; border-top: 1px solid #e5e4e0; }
+.form-step:first-child { border-top: 0; padding-top: 0; }
+.form-step > span { color: var(--red); font: 800 13px var(--font-display); padding-top: 5px; }
+.form-step h3 { margin: 0; font: 800 28px var(--font-display); text-transform: uppercase; }
+.form-step p { margin: 3px 0 0; color: #888; font-size: 11px; }
+.vehicle-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 38px; }
+.vehicle-options label { position: relative; display: flex; flex-direction: column; min-height: 120px; padding: 20px; border: 1px solid #deddd9; cursor: pointer; transition: .2s; }
+.vehicle-options label:hover { border-color: #aaa; }
+.vehicle-options label.selected { color: #fff; border-color: var(--black); background: var(--black); box-shadow: inset 4px 0 var(--red); }
+.vehicle-options input { position: absolute; opacity: 0; pointer-events: none; }
+.vehicle-options span { color: var(--red); text-transform: uppercase; letter-spacing: 1px; font-size: 8px; font-weight: 800; }
+.vehicle-options strong { margin-top: auto; font: 800 20px var(--font-display); text-transform: uppercase; }
+.vehicle-options small { color: #888; font-size: 9px; margin-top: 3px; }
+.booking-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-bottom: 35px; }
+.booking-fields.four { grid-template-columns: 1.4fr 1fr 1.4fr 1fr; }
+.booking-fields label { display: block; color: #555; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+.booking-fields input { display: block; width: 100%; border: 1px solid #d8d7d3; background: #fafafa; color: var(--ink); padding: 15px; margin: 8px 0 18px; outline: 0; }
+.booking-fields input:focus { border-color: var(--red); background: #fff; }
+.consent { display: flex; gap: 10px; align-items: flex-start; color: #777; font-size: 10px; line-height: 1.6; cursor: pointer; }
+.consent input { accent-color: var(--red); margin-top: 2px; }
+.reservation-error { background: #fff0f0; border-left: 3px solid var(--red); color: #a40009; padding: 14px; font-size: 11px; font-weight: 700; }
+.reservation-submit { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-top: 32px; padding-top: 28px; border-top: 1px solid #e5e4e0; }
+.reservation-submit > div { display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px 10px; }
+.reservation-submit small { width: 100%; color: #777; font-size: 9px; text-transform: uppercase; letter-spacing: 1px; }
+.reservation-submit strong { font: 800 34px var(--font-display); }
+.reservation-submit span { width: 100%; color: #999; font-size: 8px; }
+.reservation-submit button:disabled { opacity: .6; cursor: wait; }
+.reservation-success { max-width: 760px; margin: 0 auto; padding: clamp(35px, 6vw, 75px); background: #fff; text-align: center; box-shadow: 0 18px 60px rgba(0, 0, 0, .08); }
+.reservation-success > span { display: grid; width: 62px; height: 62px; margin: 0 auto 25px; place-items: center; border-radius: 50%; color: #fff; background: #1c9b59; font-size: 28px; }
+.reservation-success .eyebrow { display: block; margin-bottom: 8px; color: #1c9b59; }
+.reservation-success h3 { font: 800 52px var(--font-display); text-transform: uppercase; margin: 0; }
+.reservation-success > strong { display: inline-block; margin: 10px 0 30px; color: var(--red); font: 800 30px var(--font-display); letter-spacing: 2px; }
+.reservation-success dl { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border: 1px solid #e6e5e1; }
+.reservation-success dl div { padding: 18px; border-right: 1px solid #e6e5e1; }
+.reservation-success dl div:last-child { border: 0; }
+.reservation-success dt { color: #888; font-size: 8px; text-transform: uppercase; letter-spacing: 1px; }
+.reservation-success dd { margin: 5px 0 0; font-weight: 800; font-size: 12px; }
+.success-note { color: #777; font-size: 11px; line-height: 1.7; margin: 25px auto; max-width: 480px; }
+.reservation-success button { border: 0; background: transparent; color: var(--red); cursor: pointer; font-weight: 800; font-size: 10px; text-transform: uppercase; }
+@media (max-width: 900px) { .vehicle-options { grid-template-columns: repeat(2, 1fr); } .booking-fields.four { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .vehicle-options, .booking-fields, .booking-fields.four { grid-template-columns: 1fr; } .vehicle-options label { min-height: 105px; } .reservation-submit { align-items: stretch; flex-direction: column; } .reservation-submit button { width: 100%; } .reservation-success dl { grid-template-columns: 1fr; } .reservation-success dl div { border-right: 0; border-bottom: 1px solid #e6e5e1; } }

@@ -1,0 +1,73 @@
+.jasna-gora-outline {
+  position: absolute;
+  z-index: 0;
+  width: min(49vw, 730px);
+  height: auto;
+  right: 1%;
+  top: 2%;
+  overflow: visible;
+  color: var(--red);
+}
+
+.jasna-gora-outline path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.jasna-gora-outline .landmark-halo {
+  stroke-width: 18;
+  opacity: .07;
+}
+
+.jasna-gora-outline .landmark-main {
+  stroke-width: 7;
+}
+
+.jasna-gora-outline .landmark-cross {
+  stroke-width: 7;
+}
+
+.jasna-gora-outline .landmark-base {
+  stroke-width: 2;
+  opacity: .28;
+}
+
+.jasna-gora-outline text {
+  fill: currentColor;
+  font-family: var(--font-body), sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 5px;
+  opacity: .72;
+}
+
+.hero-visual .van-illustration {
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  .jasna-gora-outline {
+    width: min(94vw, 720px);
+    right: 1%;
+    top: -3%;
+  }
+}
+
+@media (max-width: 600px) {
+  .jasna-gora-outline {
+    width: 112vw;
+    right: -7%;
+    top: -7%;
+  }
+
+  .jasna-gora-outline .landmark-main,
+  .jasna-gora-outline .landmark-cross {
+    stroke-width: 8;
+  }
+
+  .jasna-gora-outline text {
+    font-size: 12px;
+  }
+}
