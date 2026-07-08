@@ -113,5 +113,20 @@
       "/fleet/fiat-ducato-maxi-hd/06.jpeg",
       "/fleet/fiat-ducato-maxi-hd/07.jpeg"
     ]
+  },
+  {
+    "id": "123123",
+    "name": "12312",
+    "type": "sadasd",
+    "category": "dostawcze",
+    "year": 2026,
+    "dailyPrice": 123123,
+    "tone": "red",
+    "description": "123123",
+    "features": [
+      "Pełne ubezpieczenie",
+      "Klimatyzacja"
+    ],
+    "images": []
   }
 ]
