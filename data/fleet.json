@@ -134,5 +134,19 @@
       "/fleet/fiat-ducato-maxi-hd/06.jpeg",
       "/fleet/fiat-ducato-maxi-hd/07.jpeg"
     ]
+  },
+  {
+    "id": "test-zapisu-vercel-20260708230026",
+    "name": "Test zapisu Vercel",
+    "type": "Test",
+    "category": "osobowe",
+    "year": 2026,
+    "dailyPrice": 1,
+    "tone": "white",
+    "description": "Test",
+    "features": [
+      "Test"
+    ],
+    "images": []
   }
 ]
