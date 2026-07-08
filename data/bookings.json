@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "id": "CB-2026-A6C7EF",
+    "vehicleId": "toyota-proace-business",
+    "vehicleName": "Toyota ProAce Business",
+    "startDate": "2026-07-22",
+    "endDate": "2026-07-29",
+    "pickupTime": "09:00",
+    "returnTime": "09:00",
+    "customerName": "Norbert Woldański",
+    "email": "",
+    "phone": "530337387",
+    "notes": "",
+    "totalDays": 8,
+    "totalPrice": 2000,
+    "status": "confirmed",
+    "source": "phone",
+    "createdAt": "2026-07-08T21:21:58.575Z"
+  }
+]
