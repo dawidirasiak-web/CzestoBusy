@@ -49,27 +49,6 @@
     ]
   },
   {
-    "id": "chery-tiggo-7",
-    "name": "Chery Tiggo 7",
-    "type": "SUV",
-    "category": "osobowe",
-    "year": 2025,
-    "dailyPrice": 200,
-    "tone": "red",
-    "description": "Wygodny SUV na wyjazdy prywatne, firmowe i codzienny wynajem.",
-    "features": [
-      "Pelne ubezpieczenie",
-      "Klimatyzacja"
-    ],
-    "images": [
-      "/fleet/chery-tiggo-7/01.jpg",
-      "/fleet/chery-tiggo-7/02.jpg",
-      "/fleet/chery-tiggo-7/03.jpg",
-      "/fleet/chery-tiggo-7/04.jpg",
-      "/fleet/chery-tiggo-7/05.jpg"
-    ]
-  },
-  {
     "id": "toyota-proace-max",
     "name": "Toyota ProAce Max",
     "type": "Dostawczy",
