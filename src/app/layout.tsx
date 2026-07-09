@@ -47,7 +47,14 @@ export const metadata: Metadata = {
     title: "CzęstoBusy | Wynajem busów 9-osobowych i dostawczych",
     description:
       "Wynajem zadbanych busów 9-osobowych i dostawczych w Częstochowie i okolicach.",
-    images: [{ url: "/images/hero-van-real.png", width: 1859, height: 846, alt: "Biały bus CzęstoBusy" }],
+    images: [{ url: "/images/share-logo.png", width: 1200, height: 630, alt: "Logo CzęstoBusy" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CzęstoBusy | Wynajem busów 9-osobowych i dostawczych",
+    description:
+      "Wynajem zadbanych busów 9-osobowych i dostawczych w Częstochowie i okolicach.",
+    images: ["/images/share-logo.png"],
   },
   icons: {
     icon: "/favicon.svg",
