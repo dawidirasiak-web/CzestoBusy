@@ -17,7 +17,7 @@ export function SiteFooter({ homeHref = "/" }: { homeHref?: string }) {
         <br />
         <span style={{ textTransform: "none", letterSpacing: ".6px" }}>
           Wykonanie strony: Dawid Irasiak{" "}
-          <a href="https://dav.it" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/dav_it_website/" target="_blank" rel="noopener noreferrer">
             dav.it
           </a>
         </span>
