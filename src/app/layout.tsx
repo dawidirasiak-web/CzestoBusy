@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Barlow_Condensed, Manrope } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { absoluteUrl, siteName, siteUrl } from "@/lib/site-config";
 import "./globals.css";
 import "./fleet.css";
@@ -69,7 +70,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pl" className={`${manrope.variable} ${barlow.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
