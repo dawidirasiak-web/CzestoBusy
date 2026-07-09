@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ReservationForm } from "@/components/reservation-form";
 import { HeaderSocials } from "@/components/header-socials";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteLogo } from "@/components/site-logo";
 import { VehicleGallery } from "@/components/vehicle-gallery";
 import { getBookedRanges } from "@/lib/bookings";
@@ -46,7 +47,7 @@ export default async function VehiclePage({ params }: PageProps) {
 
       <section className="vehicle-reservation section" id="kalendarz"><div className="reservation-heading"><p className="eyebrow"><span/> Kalendarz rezerwacji</p><h2>Wybierz wolny<br/><em>termin.</em></h2><p>Czerwone dni są już zajęte. Wybierz pierwszy i ostatni dzień wynajmu, a następnie uzupełnij dane.</p></div><ReservationForm vehicle={vehicle} bookedRanges={bookedRanges}/></section>
 
-      <footer><Link className="brand footer-brand" href="/"><span>CZĘSTO</span><strong>BUSY</strong></Link><nav className="footer-links" aria-label="Dokumenty"><Link href="/regulamin">Regulamin</Link><Link href="/polityka-prywatnosci">Polityka prywatności</Link><Link href="/faq">FAQ</Link></nav><p>© 2026 CzęstoBusy</p></footer>
+      <SiteFooter />
     </main>
   );
 }

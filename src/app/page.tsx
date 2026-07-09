@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ScrollVan } from "@/components/scroll-van";
 import { FleetReveal } from "@/components/fleet-reveal";
 import { HeaderSocials } from "@/components/header-socials";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteLogo } from "@/components/site-logo";
 import { listFleet } from "@/lib/fleet";
 
@@ -103,7 +104,7 @@ export default async function Home() {
         <div className="feature-list">{features.map(([number,title,text]) => <article key={number}><span>{number}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
       </section>
 
-      <footer><Link className="brand footer-brand" href="/#top"><span>CZĘSTO</span><strong>BUSY</strong></Link><nav className="footer-links" aria-label="Dokumenty"><Link href="/regulamin">Regulamin</Link><Link href="/polityka-prywatnosci">Polityka prywatności</Link><Link href="/faq">FAQ</Link></nav><p>© 2026 CzęstoBusy</p></footer>
+      <SiteFooter homeHref="/#top" />
     </main>
   );
 }

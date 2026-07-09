@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { listFleet } from "@/lib/fleet";
 import { HeaderSocials } from "@/components/header-socials";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteLogo } from "@/components/site-logo";
 
 const ArrowIcon = () => <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg>;
@@ -37,7 +38,7 @@ export async function FleetCategoryPage({ category }: { category: Category }) {
 
       <section className="category-fleet section"><div className="section-heading"><div><p className="eyebrow"><span/> Dostępne pojazdy</p><h2>Wybierz<br/><em>swój model</em></h2></div><p>Kliknij wybrany samochód, aby zobaczyć pełną galerię, sprawdzić kalendarz i dokonać rezerwacji.</p></div><div className="fleet-grid">{vehicles.map((car, index) => <article className="fleet-card" key={car.id}><div className={`fleet-visual ${car.tone} ${car.images.length ? "has-photo" : ""}`}>{car.images.length ? <Image className="fleet-photo" src={car.images[0]} alt={car.name} fill sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 33vw"/> : <div className="vehicle-silhouette"><i/><b/><b/></div>}<span className="fleet-index">0{index + 1}</span><span className="fleet-type">{car.type}</span></div><div className="fleet-content"><div><p>Rok produkcji {car.year}</p><h3>{car.name}</h3></div><ul>{car.features.slice(0, 2).map((feature) => <li key={feature}><CheckIcon/>{feature}</li>)}</ul><div className="fleet-bottom"><p><small>Cena od</small><strong>{car.dailyPrice} zł</strong><span>/ doba</span></p><Link href={`/flota/${car.id}`} aria-label={`Zobacz i zarezerwuj ${car.name}`}><ArrowIcon/></Link></div></div></article>)}</div></section>
 
-      <footer><Link className="brand footer-brand" href="/"><span>CZĘSTO</span><strong>BUSY</strong></Link><nav className="footer-links" aria-label="Dokumenty"><Link href="/regulamin">Regulamin</Link><Link href="/polityka-prywatnosci">Polityka prywatności</Link><Link href="/faq">FAQ</Link></nav><p>© 2026 CzęstoBusy</p></footer>
+      <SiteFooter />
     </main>
   );
 }

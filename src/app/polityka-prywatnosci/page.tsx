@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { HeaderSocials } from "@/components/header-socials";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteLogo } from "@/components/site-logo";
 
 export const metadata: Metadata = {
@@ -66,7 +67,7 @@ export default function PrivacyPolicyPage() {
         {sections.map((section, index) => <section key={section.title}><span>{String(index + 1).padStart(2, "0")}</span><div><h2>{section.title}</h2>{section.content}</div></section>)}
       </article>
 
-      <footer><Link className="brand footer-brand" href="/"><span>CZĘSTO</span><strong>BUSY</strong></Link><nav className="footer-links" aria-label="Dokumenty"><Link href="/regulamin">Regulamin</Link><Link href="/polityka-prywatnosci">Polityka prywatności</Link><Link href="/faq">FAQ</Link></nav><p>© 2026 CzęstoBusy</p></footer>
+      <SiteFooter />
     </main>
   );
 }
