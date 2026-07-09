@@ -12,7 +12,7 @@ export function SiteFooter({ homeHref = "/" }: { homeHref?: string }) {
         <Link href="/polityka-prywatnosci">Polityka prywatności</Link>
         <Link href="/faq">FAQ</Link>
       </nav>
-      <p>
+      <p style={{ fontSize: "10px" }}>
         © 2026 CzęstoBusy
         <br />
         <span style={{ textTransform: "none", letterSpacing: ".6px" }}>
