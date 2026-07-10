@@ -134,5 +134,20 @@
       "/api/fleet-images/0d1edf8e-5ff0-45d4-8dbf-03521d9a4167.jpg",
       "/api/fleet-images/88583a26-afe9-4e35-b12a-ee8b1767e015.jpg"
     ]
+  },
+  {
+    "id": "renault-trafic-1",
+    "name": "Renault Trafic",
+    "type": "9 osób",
+    "category": "osobowe",
+    "year": 2025,
+    "dailyPrice": 250,
+    "tone": "white",
+    "description": "Nowoczesny, regularnie serwisowany pojazd gotowy na Twoją trasę.",
+    "features": [
+      "Pełne ubezpieczenie",
+      "Klimatyzacja"
+    ],
+    "images": []
   }
 ]
