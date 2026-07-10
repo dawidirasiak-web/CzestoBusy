@@ -30,6 +30,10 @@ function decodeBase64(value: string) {
   return Buffer.from(value.replace(/\s/g, ""), "base64").toString("utf8");
 }
 
+function decodeBase64Buffer(value: string) {
+  return Buffer.from(value.replace(/\s/g, ""), "base64");
+}
+
 async function githubRequest<T>(pathName: string, init: RequestInit = {}) {
   const config = githubConfig();
   if (!config) throw new Error("GITHUB_DATA_NOT_CONFIGURED");
@@ -110,4 +114,27 @@ export async function writeJsonFile(fileName: string, value: unknown) {
   if (await writeToGitHub(fileName, contents)) return;
   if (process.env.VERCEL) throw new Error("PERSISTENT_DATA_NOT_CONFIGURED");
   await writeToFile(fileName, contents);
+}
+
+export async function writeBinaryFile(fileName: string, contents: Buffer) {
+  const config = githubConfig();
+  if (!config) throw new Error("GITHUB_DATA_NOT_CONFIGURED");
+  const filePath = `data/uploads/${fileName}`;
+  await githubRequest(`/contents/${filePath}`, {
+    method: "PUT",
+    body: JSON.stringify({
+      branch: config.branch,
+      content: contents.toString("base64"),
+      message: `Upload ${filePath} from admin panel`,
+    }),
+  });
+}
+
+export async function readBinaryFile(fileName: string) {
+  const config = githubConfig();
+  if (!config) throw new Error("GITHUB_DATA_NOT_CONFIGURED");
+  const filePath = `data/uploads/${fileName}`;
+  const result = await githubRequest<GitHubContentResponse>(`/contents/${filePath}?ref=${encodeURIComponent(config.branch)}`);
+  if (!result.content) throw new Error("GITHUB_FILE_NOT_FOUND");
+  return decodeBase64Buffer(result.content);
 }

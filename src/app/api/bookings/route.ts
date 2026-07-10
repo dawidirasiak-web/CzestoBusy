@@ -1,4 +1,5 @@
 import { createBooking, type Booking } from "@/lib/bookings";
+import { isBookingEmailConfigured, sendBookingEmails } from "@/lib/booking-email";
 import { findVehicle } from "@/lib/fleet";
 
 export const runtime = "nodejs";
@@ -49,6 +50,10 @@ export async function POST(request: Request) {
   if (customerName.length < 3 || !emailPattern.test(email) || !phonePattern.test(phone)) {
     return Response.json({ error: "Uzupełnij poprawne dane kontaktowe." }, { status: 400 });
   }
+  if (!isBookingEmailConfigured()) {
+    console.error("Booking email is not configured");
+    return Response.json({ error: "System potwierdzeń e-mail jest chwilowo niedostępny. Zadzwoń pod numer 883 066 661." }, { status: 503 });
+  }
 
   const millisecondsPerDay = 86_400_000;
   const totalDays = Math.max(1, Math.ceil((Date.parse(endDate) - Date.parse(startDate)) / millisecondsPerDay) + 1);
@@ -79,6 +84,16 @@ export async function POST(request: Request) {
     }
     console.error("Booking creation failed", error);
     return Response.json({ error: "Nie udało się zapisać rezerwacji. Spróbuj ponownie." }, { status: 500 });
+  }
+
+  try {
+    await sendBookingEmails(booking);
+  } catch (error) {
+    console.error("Booking email delivery failed", error);
+    return Response.json({
+      booking: { id: booking.id, vehicleName: booking.vehicleName, totalDays, totalPrice: booking.totalPrice },
+      warning: "Rezerwacja została zapisana, ale nie udało się wysłać wiadomości e-mail. Skontaktujemy się z Tobą telefonicznie.",
+    }, { status: 201 });
   }
 
   return Response.json({ booking: { id: booking.id, vehicleName: booking.vehicleName, totalDays, totalPrice: booking.totalPrice } }, { status: 201 });

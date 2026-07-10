@@ -4,7 +4,7 @@ import { useMemo, useState, type FormEvent } from "react";
 import type { FleetVehicle } from "@/lib/fleet";
 
 type BookedRange = { startDate: string; endDate: string };
-type Confirmation = { id: string; vehicleName: string; totalDays: number; totalPrice: number };
+type Confirmation = { id: string; vehicleName: string; totalDays: number; totalPrice: number; warning?: string };
 
 function toIsoDate(date: Date) {
   const year = date.getFullYear();
@@ -77,9 +77,9 @@ export function ReservationForm({ vehicle, bookedRanges }: { vehicle: FleetVehic
     const data = Object.fromEntries(new FormData(event.currentTarget));
     try {
       const response = await fetch("/api/bookings", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
-      const result = (await response.json()) as { booking?: Confirmation; error?: string };
+      const result = (await response.json()) as { booking?: Confirmation; error?: string; warning?: string };
       if (!response.ok || !result.booking) throw new Error(result.error || "Nie udało się utworzyć rezerwacji.");
-      setConfirmation(result.booking);
+      setConfirmation({ ...result.booking, warning: result.warning });
     } catch (submissionError) {
       setError(submissionError instanceof Error ? submissionError.message : "Nie udało się utworzyć rezerwacji.");
     } finally {
@@ -88,7 +88,7 @@ export function ReservationForm({ vehicle, bookedRanges }: { vehicle: FleetVehic
   }
 
   if (confirmation) {
-    return <div className="reservation-success" role="status"><span>✓</span><p className="eyebrow">Rezerwacja potwierdzona</p><h3>Dziękujemy!</h3><p>Twój numer rezerwacji:</p><strong>{confirmation.id}</strong><dl><div><dt>Pojazd</dt><dd>{confirmation.vehicleName}</dd></div><div><dt>Liczba dni</dt><dd>{confirmation.totalDays}</dd></div><div><dt>Razem</dt><dd>{confirmation.totalPrice} zł</dd></div></dl><p className="success-note">Zachowaj numer rezerwacji. Skontaktujemy się z Tobą, aby ustalić szczegóły odbioru.</p></div>;
+    return <div className="reservation-success" role="status"><span>✓</span><p className="eyebrow">Rezerwacja potwierdzona</p><h3>Dziękujemy!</h3><p>Twój numer rezerwacji:</p><strong>{confirmation.id}</strong><dl><div><dt>Pojazd</dt><dd>{confirmation.vehicleName}</dd></div><div><dt>Liczba dni</dt><dd>{confirmation.totalDays}</dd></div><div><dt>Razem</dt><dd>{confirmation.totalPrice} zł</dd></div></dl><p className="success-note">{confirmation.warning || "Potwierdzenie wysłaliśmy na podany adres e-mail. Skontaktujemy się z Tobą, aby ustalić szczegóły odbioru."}</p></div>;
   }
 
   const nextMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() + 1, 1);

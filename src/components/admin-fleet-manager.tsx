@@ -4,6 +4,9 @@ import { useMemo, useState, type FormEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { DndContext, KeyboardSensor, PointerSensor, TouchSensor, closestCenter, useSensor, useSensors, type DragEndEvent } from "@dnd-kit/core";
+import { SortableContext, arrayMove, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import type { FleetVehicle } from "@/lib/fleet";
 
 type FormMode = { type: "add" } | { type: "edit"; vehicle: FleetVehicle } | null;
@@ -16,16 +19,67 @@ function payloadFromForm(form: HTMLFormElement) {
   return Object.fromEntries(new FormData(form));
 }
 
+function SortableImageRow({ image, index, onRemove }: { image: string; index: number; onRemove: () => void }) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: image });
+  const style = { transform: CSS.Transform.toString(transform), transition };
+
+  return <div className={`image-field-row ${isDragging ? "is-dragging" : ""}`} ref={setNodeRef} style={style}>
+    <button className="image-drag-handle" type="button" {...attributes} {...listeners} aria-label={`Przeciągnij zdjęcie ${index + 1}, aby zmienić kolejność`} title="Przeciągnij, aby zmienić kolejność">⠿</button>
+    <div className="image-preview"><Image src={image} alt={`Zdjęcie ${index + 1}`} width={96} height={64}/></div>
+    <span className="image-file-name">Zdjęcie {index + 1}{index === 0 && <small>Główne</small>}</span>
+    <button className="danger" type="button" onClick={onRemove}>Usuń</button>
+  </div>;
+}
+
 function ImageFields({ initialImages }: { initialImages?: string[] }) {
-  const [images, setImages] = useState(() => initialImages?.length ? initialImages : [""]);
+  const [images, setImages] = useState(() => initialImages || []);
+  const [uploading, setUploading] = useState(false);
+  const [uploadMessage, setUploadMessage] = useState("");
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+    useSensor(TouchSensor, { activationConstraint: { delay: 150, tolerance: 5 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+  );
+
+  function finishDrag(event: DragEndEvent) {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+    setImages((current) => {
+      const from = current.indexOf(String(active.id));
+      const to = current.indexOf(String(over.id));
+      return from === -1 || to === -1 ? current : arrayMove(current, from, to);
+    });
+  }
+
+  async function uploadImages(files: FileList | null) {
+    if (!files?.length) return;
+    setUploading(true);
+    setUploadMessage("");
+    const body = new FormData();
+    Array.from(files).forEach((file) => body.append("images", file));
+
+    try {
+      const response = await fetch("/api/admin/fleet-images", { method: "POST", body });
+      const result = (await response.json()) as { images?: string[]; error?: string };
+      if (!response.ok || !result.images) throw new Error(result.error || "Nie udało się przesłać zdjęć.");
+      setImages((current) => [...current, ...result.images!]);
+      setUploadMessage(`Dodano ${result.images.length} ${result.images.length === 1 ? "zdjęcie" : "zdjęcia"}.`);
+    } catch (error) {
+      setUploadMessage(error instanceof Error ? error.message : "Nie udało się przesłać zdjęć.");
+    } finally {
+      setUploading(false);
+    }
+  }
 
   return <div className="image-fields">
-    <div className="image-fields-header"><span>Zdjęcia</span><button type="button" onClick={() => setImages((current) => [...current, ""])}>Dodaj zdjęcie</button></div>
-    {images.map((image, index) => <div className="image-field-row" key={index}>
-      <div className="image-preview">{image.startsWith("/") ? <Image src={image} alt="" width={96} height={64}/> : <span>Brak zdjęcia</span>}</div>
-      <label><span>Ścieżka zdjęcia</span><input value={image} onChange={(event) => setImages((current) => current.map((item, itemIndex) => itemIndex === index ? event.target.value : item))} placeholder="/fleet/model/01.jpg"/></label>
-      <button className="danger" type="button" onClick={() => setImages((current) => current.length === 1 ? [""] : current.filter((_, itemIndex) => itemIndex !== index))}>Usuń</button>
-    </div>)}
+    <div className="image-fields-header"><span>Zdjęcia z dysku lub telefonu</span><label className="image-upload-button">{uploading ? "Wysyłanie..." : "+ Wybierz zdjęcia"}<input accept="image/jpeg,image/png,image/webp" disabled={uploading} multiple onChange={(event) => { void uploadImages(event.target.files); event.target.value = ""; }} type="file"/></label></div>
+    {uploadMessage && <p className="image-upload-message" role="status">{uploadMessage}</p>}
+    {images.length === 0 && <p className="image-upload-empty">Nie dodano jeszcze zdjęć. Możesz wybrać kilka plików jednocześnie.</p>}
+    <DndContext collisionDetection={closestCenter} onDragEnd={finishDrag} sensors={sensors}>
+      <SortableContext items={images} strategy={verticalListSortingStrategy}>
+        {images.map((image, index) => <SortableImageRow image={image} index={index} key={image} onRemove={() => setImages((current) => current.filter((item) => item !== image))}/>)}
+      </SortableContext>
+    </DndContext>
     <input name="images" type="hidden" value={images.join("\n")} readOnly/>
   </div>;
 }
@@ -38,7 +92,7 @@ function VehicleFields({ vehicle }: { vehicle?: FleetVehicle }) {
     <label><span>Kategoria</span><select required name="category" defaultValue={vehicle?.category || "osobowe"}><option value="osobowe">Osobowe</option><option value="dostawcze">Dostawcze</option></select></label>
     <label><span>Rocznik</span><input required name="year" type="number" min="1990" max="2100" defaultValue={vehicle?.year || new Date().getFullYear()}/></label>
     <label><span>Cena / doba</span><input required name="dailyPrice" type="number" min="1" step="1" defaultValue={vehicle?.dailyPrice} placeholder="250"/></label>
-    <label><span>Kolor tła</span><select name="tone" defaultValue={vehicle?.tone || "white"}><option value="white">Biały</option><option value="silver">Srebrny</option><option value="black">Czarny</option><option value="graphite">Grafit</option><option value="red">Czerwony</option></select></label>
+    <label><span>Kolor pojazdu</span><select name="tone" defaultValue={vehicle?.tone || "white"}><option value="white">Biały</option><option value="silver">Srebrny</option><option value="black">Czarny</option><option value="graphite">Grafit</option><option value="red">Czerwony</option></select></label>
     <label className="admin-notes"><span>Opis</span><textarea name="description" rows={4} defaultValue={vehicle?.description} placeholder="Krótki opis widoczny na stronie pojazdu."/></label>
     <label className="admin-notes"><span>Cechy</span><textarea name="features" rows={3} defaultValue={vehicle ? listValue(vehicle.features) : "Pełne ubezpieczenie\nKlimatyzacja"} placeholder="Jedna cecha w linii"/></label>
     <div className="admin-notes wide"><ImageFields initialImages={vehicle?.images}/></div>

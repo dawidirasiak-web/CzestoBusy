@@ -32,7 +32,7 @@ http://localhost:3000/admin
 Wymagane zmienne:
 
 ```bash
-NEXT_PUBLIC_SITE_URL=https://czestobusy.pl
+NEXT_PUBLIC_SITE_URL=https://www.czestobusy.pl
 DATA_DIR=./data
 ADMIN_PASSWORD=change-this-strong-production-password
 ADMIN_SESSION_SECRET=change-this-to-a-random-secret-with-at-least-32-characters

@@ -1,4 +1,4 @@
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://czestobusy.pl";
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.czestobusy.pl";
 
 export const siteName = "CzęstoBusy";
 

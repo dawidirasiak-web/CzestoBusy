@@ -34,7 +34,7 @@ Na serwerze ustaw:
 NODE_ENV=production
 PORT=3000
 HOSTNAME=0.0.0.0
-NEXT_PUBLIC_SITE_URL=https://czestobusy.pl
+NEXT_PUBLIC_SITE_URL=https://www.czestobusy.pl
 DATA_DIR=/sciezka/do/trwalego/katalogu/data
 ADMIN_PASSWORD=tu_wpisz_mocne_haslo_admina
 ADMIN_SESSION_SECRET=minimum_32_znaki_losowego_tekstu

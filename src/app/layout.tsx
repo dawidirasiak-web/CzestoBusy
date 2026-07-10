@@ -59,7 +59,11 @@ export const metadata: Metadata = {
     images: ["/images/share-logo.png"],
   },
   icons: {
-    icon: "/favicon.svg",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-192.png", type: "image/png", sizes: "192x192" },
+    ],
+    shortcut: "/favicon-192.png",
     apple: "/images/czestobusy-logo.png",
   },
   robots: {
