@@ -16,5 +16,23 @@
     "status": "confirmed",
     "source": "phone",
     "createdAt": "2026-07-10T06:49:08.871Z"
+  },
+  {
+    "id": "CB-2026-92012F",
+    "vehicleId": "toyota-proace",
+    "vehicleName": "Toyota ProAce",
+    "startDate": "2026-07-22",
+    "endDate": "2026-08-04",
+    "pickupTime": "09:00",
+    "returnTime": "09:00",
+    "customerName": "Poczesna",
+    "email": "",
+    "phone": "",
+    "notes": "",
+    "totalDays": 14,
+    "totalPrice": 2800,
+    "status": "confirmed",
+    "source": "phone",
+    "createdAt": "2026-07-10T07:04:18.351Z"
   }
 ]
