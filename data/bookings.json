@@ -142,5 +142,23 @@
     "status": "confirmed",
     "source": "phone",
     "createdAt": "2026-07-10T07:26:41.077Z"
+  },
+  {
+    "id": "CB-2026-DDE03C",
+    "vehicleId": "toyota-proace-business",
+    "vehicleName": "Toyota ProAce Business",
+    "startDate": "2026-09-25",
+    "endDate": "2026-10-10",
+    "pickupTime": "09:00",
+    "returnTime": "09:00",
+    "customerName": "Bielsko Biała",
+    "email": "",
+    "phone": "",
+    "notes": "",
+    "totalDays": 16,
+    "totalPrice": 4000,
+    "status": "confirmed",
+    "source": "phone",
+    "createdAt": "2026-07-10T07:27:18.021Z"
   }
 ]
