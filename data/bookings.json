@@ -106,5 +106,23 @@
     "status": "confirmed",
     "source": "phone",
     "createdAt": "2026-07-10T07:23:53.203Z"
+  },
+  {
+    "id": "CB-2026-F8CCDA",
+    "vehicleId": "toyota-proace-business",
+    "vehicleName": "Toyota ProAce Business",
+    "startDate": "2026-08-19",
+    "endDate": "2026-08-28",
+    "pickupTime": "09:00",
+    "returnTime": "09:00",
+    "customerName": "Garwolin",
+    "email": "",
+    "phone": "",
+    "notes": "",
+    "totalDays": 10,
+    "totalPrice": 2500,
+    "status": "confirmed",
+    "source": "phone",
+    "createdAt": "2026-07-10T07:24:21.218Z"
   }
 ]
