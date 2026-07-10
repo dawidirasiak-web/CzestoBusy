@@ -1,6 +1,6 @@
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { vehicleFromBody } from "@/lib/admin-fleet-form";
-import { createVehicle, listFleet } from "@/lib/fleet";
+import { createVehicle, listFleet, reorderFleet } from "@/lib/fleet";
 
 export const runtime = "nodejs";
 
@@ -29,5 +29,19 @@ export async function POST(request: Request) {
     if (error instanceof Error && error.message === "VEHICLE_EXISTS") return Response.json({ error: "Pojazd z takim identyfikatorem już istnieje." }, { status: 409 });
     console.error("Vehicle creation failed", error);
     return Response.json({ error: "Nie udało się zapisać pojazdu." }, { status: 500 });
+  }
+}
+
+export async function PUT(request: Request) {
+  if (!(await isAdminAuthenticated())) return Response.json({ error: "Brak autoryzacji." }, { status: 401 });
+  const body = (await request.json().catch(() => null)) as { ids?: unknown } | null;
+  if (!body || !Array.isArray(body.ids) || body.ids.some((id) => typeof id !== "string")) {
+    return Response.json({ error: "Nieprawidłowa kolejność pojazdów." }, { status: 400 });
+  }
+  try {
+    await reorderFleet(body.ids as string[]);
+    return Response.json({ success: true });
+  } catch {
+    return Response.json({ error: "Nie udało się zapisać kolejności floty." }, { status: 400 });
   }
 }

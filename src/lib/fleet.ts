@@ -103,3 +103,17 @@ export async function deleteVehicle(id: string) {
   writeQueue = operation.catch(() => undefined);
   await operation;
 }
+
+export async function reorderFleet(ids: string[]) {
+  const operation = writeQueue.catch(() => undefined).then(async () => {
+    const vehicles = await readFleetFile();
+    if (ids.length !== vehicles.length || new Set(ids).size !== ids.length || ids.some((id) => !vehicles.some((vehicle) => vehicle.id === id))) {
+      throw new Error("INVALID_FLEET_ORDER");
+    }
+    const byId = new Map(vehicles.map((vehicle) => [vehicle.id, vehicle]));
+    await saveFleet(ids.map((id) => byId.get(id)!));
+  });
+
+  writeQueue = operation.catch(() => undefined);
+  await operation;
+}

@@ -31,6 +31,16 @@ function SortableImageRow({ image, index, onRemove }: { image: string; index: nu
   </div>;
 }
 
+function SortableVehicleRow({ vehicle, index }: { vehicle: FleetVehicle; index: number }) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: vehicle.id });
+  return <div className={`fleet-order-row ${isDragging ? "is-dragging" : ""}`} ref={setNodeRef} style={{ transform: CSS.Transform.toString(transform), transition }}>
+    <button className="fleet-order-handle" type="button" {...attributes} {...listeners} aria-label={`Przeciągnij ${vehicle.name}, aby zmienić pozycję`}>⠿</button>
+    <strong>{String(index + 1).padStart(2, "0")}</strong>
+    <div>{vehicle.images[0] ? <Image src={vehicle.images[0]} alt="" width={80} height={54}/> : <span>Brak zdjęcia</span>}</div>
+    <p><b>{vehicle.name}</b><small>{vehicle.type}</small></p>
+  </div>;
+}
+
 function ImageFields({ initialImages }: { initialImages?: string[] }) {
   const [images, setImages] = useState(() => initialImages || []);
   const [uploading, setUploading] = useState(false);
@@ -105,6 +115,13 @@ export function AdminFleetManager({ initialVehicles }: { initialVehicles: FleetV
   const [formMode, setFormMode] = useState<FormMode>(null);
   const [message, setMessage] = useState("");
   const [formKey, setFormKey] = useState(0);
+  const [orderMode, setOrderMode] = useState(false);
+  const [orderedVehicles, setOrderedVehicles] = useState(initialVehicles);
+  const orderSensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+    useSensor(TouchSensor, { activationConstraint: { delay: 150, tolerance: 5 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+  );
 
   const formTitle = useMemo(() => {
     if (!formMode) return "";
@@ -150,6 +167,27 @@ export function AdminFleetManager({ initialVehicles }: { initialVehicles: FleetV
     router.refresh();
   }
 
+  function finishVehicleDrag(event: DragEndEvent) {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+    setOrderedVehicles((current) => {
+      const from = current.findIndex((vehicle) => vehicle.id === active.id);
+      const to = current.findIndex((vehicle) => vehicle.id === over.id);
+      return from === -1 || to === -1 ? current : arrayMove(current, from, to);
+    });
+  }
+
+  async function saveFleetOrder() {
+    setMessage("");
+    const response = await fetch("/api/admin/fleet", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ids: orderedVehicles.map((vehicle) => vehicle.id) }) });
+    const result = (await response.json()) as { error?: string };
+    if (!response.ok) { setMessage(result.error || "Nie udało się zapisać kolejności floty."); return; }
+    setVehicles(orderedVehicles);
+    setOrderMode(false);
+    setMessage("Kolejność pojazdów została zapisana.");
+    router.refresh();
+  }
+
   async function logout() {
     await fetch("/api/admin/logout", { method: "POST" });
     router.replace("/admin/login");
@@ -159,12 +197,13 @@ export function AdminFleetManager({ initialVehicles }: { initialVehicles: FleetV
   return <main className="admin-shell">
     <header className="admin-header"><div><span>CZĘSTO<strong>BUSY</strong></span><small>Panel administratora</small></div><div><Link href="/admin">Rezerwacje</Link><a href="/" target="_blank">Otwórz stronę</a><button onClick={logout} type="button">Wyloguj</button></div></header>
     <section className="admin-main">
-      <div className="admin-title"><div><p>Zarządzanie flotą</p><h1>Flota</h1></div><div className="admin-title-actions"><button className="admin-primary" onClick={() => { setFormMode({ type: "add" }); setMessage(""); }} type="button">+ Dodaj auto</button><Link className="admin-primary secondary" href="/admin">Rezerwacje</Link></div></div>
+      <div className="admin-title"><div><p>Zarządzanie flotą</p><h1>Flota</h1></div><div className="admin-title-actions"><button className="admin-primary" onClick={() => { setFormMode({ type: "add" }); setMessage(""); }} type="button">+ Dodaj auto</button><button className="admin-primary secondary" onClick={() => { setOrderedVehicles(vehicles); setOrderMode(true); setFormMode(null); setMessage(""); }} type="button">Ustaw kolejność</button><Link className="admin-primary secondary" href="/admin">Rezerwacje</Link></div></div>
       {message && <p className="admin-message" role="status">{message}</p>}
 
       {formMode && <section className="admin-create vehicle-create fleet-page-create"><div><p>{formMode.type === "add" ? "Nowy pojazd" : "Edycja pojazdu"}</p><h2>{formTitle}</h2><span>Ustaw cenę, opis, cechy i zdjęcia widoczne na stronie.</span></div><form className="vehicle-form" key={`${formMode.type}-${formMode.type === "edit" ? formMode.vehicle.id : "new"}-${formKey}`} onSubmit={submitVehicle}><VehicleFields vehicle={formMode.type === "edit" ? formMode.vehicle : undefined}/><div className="fleet-admin-actions form-actions"><button className="admin-primary" type="submit">{formMode.type === "add" ? "Dodaj pojazd" : "Zapisz zmiany"}</button><button type="button" onClick={() => setFormMode(null)}>Anuluj</button></div></form></section>}
 
-      <section className="admin-list fleet-admin-page"><div className="admin-toolbar"><div><h2>Obecne pojazdy</h2><span>{vehicles.length} w flocie</span></div></div><div className="admin-fleet-grid">{vehicles.map((vehicle, index) => <article className="admin-fleet-card" key={vehicle.id}><div className={`admin-fleet-visual ${vehicle.tone} ${vehicle.images.length ? "has-photo" : ""}`}>{vehicle.images[0] ? <Image className="fleet-photo" src={vehicle.images[0]} alt={vehicle.name} fill sizes="(max-width: 700px) 100vw, (max-width: 1200px) 50vw, 33vw"/> : <div className="vehicle-silhouette"><i/><b/><b/></div>}<span className="fleet-index">{String(index + 1).padStart(2, "0")}</span><span className="fleet-type">{vehicle.type}</span></div><div className="admin-fleet-content"><p>Rok produkcji {vehicle.year}</p><h3>{vehicle.name}</h3><ul>{vehicle.features.slice(0, 2).map((feature) => <li key={feature}><CheckIcon/>{feature}</li>)}</ul><div className="admin-fleet-bottom"><p><small>Cena od</small><strong>{vehicle.dailyPrice} zł</strong><span>/ doba</span></p><div className="fleet-admin-actions"><button type="button" onClick={() => { setFormMode({ type: "edit", vehicle }); setMessage(""); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Edytuj</button><button className="danger" type="button" onClick={() => removeVehicle(vehicle)}>Usuń</button></div></div></div></article>)}</div></section>
+      {orderMode && <section className="admin-list fleet-order-panel"><div><p>KOLEJNOŚĆ FLOTY</p><h2>Przeciągnij pojazdy</h2><span>Pierwszy pojazd pojawi się jako pierwszy na stronie.</span></div><DndContext collisionDetection={closestCenter} onDragEnd={finishVehicleDrag} sensors={orderSensors}><SortableContext items={orderedVehicles.map((vehicle) => vehicle.id)} strategy={verticalListSortingStrategy}>{orderedVehicles.map((vehicle, index) => <SortableVehicleRow index={index} key={vehicle.id} vehicle={vehicle}/>)}</SortableContext></DndContext><div className="fleet-order-actions"><button className="admin-primary" onClick={saveFleetOrder} type="button">Zapisz kolejność</button><button onClick={() => setOrderMode(false)} type="button">Anuluj</button></div></section>}
+      {!orderMode && <section className="admin-list fleet-admin-page"><div className="admin-toolbar"><div><h2>Obecne pojazdy</h2><span>{vehicles.length} w flocie</span></div></div><div className="admin-fleet-grid">{vehicles.map((vehicle, index) => <article className="admin-fleet-card" key={vehicle.id}><div className={`admin-fleet-visual ${vehicle.tone} ${vehicle.images.length ? "has-photo" : ""}`}>{vehicle.images[0] ? <Image className="fleet-photo" src={vehicle.images[0]} alt={vehicle.name} fill sizes="(max-width: 700px) 100vw, (max-width: 1200px) 50vw, 33vw"/> : <div className="vehicle-silhouette"><i/><b/><b/></div>}<span className="fleet-index">{String(index + 1).padStart(2, "0")}</span><span className="fleet-type">{vehicle.type}</span></div><div className="admin-fleet-content"><p>Rok produkcji {vehicle.year}</p><h3>{vehicle.name}</h3><ul>{vehicle.features.slice(0, 2).map((feature) => <li key={feature}><CheckIcon/>{feature}</li>)}</ul><div className="admin-fleet-bottom"><p><small>Cena od</small><strong>{vehicle.dailyPrice} zł</strong><span>/ doba</span></p><div className="fleet-admin-actions"><button type="button" onClick={() => { setFormMode({ type: "edit", vehicle }); setMessage(""); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Edytuj</button><button className="danger" type="button" onClick={() => removeVehicle(vehicle)}>Usuń</button></div></div></div></article>)}</div></section>}
     </section>
   </main>;
 }
