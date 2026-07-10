@@ -52,5 +52,23 @@
     "status": "confirmed",
     "source": "phone",
     "createdAt": "2026-07-10T07:08:45.249Z"
+  },
+  {
+    "id": "CB-2026-5E826A",
+    "vehicleId": "toyota-proace-business",
+    "vehicleName": "Toyota ProAce Business",
+    "startDate": "2026-07-11",
+    "endDate": "2026-07-27",
+    "pickupTime": "09:00",
+    "returnTime": "09:00",
+    "customerName": "Piotrków",
+    "email": "",
+    "phone": "",
+    "notes": "",
+    "totalDays": 17,
+    "totalPrice": 3300,
+    "status": "confirmed",
+    "source": "phone",
+    "createdAt": "2026-07-10T07:14:41.409Z"
   }
 ]
