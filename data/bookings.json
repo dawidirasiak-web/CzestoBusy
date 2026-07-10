@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "id": "CB-2026-AE597D",
+    "vehicleId": "toyota-proace",
+    "vehicleName": "Toyota ProAce",
+    "startDate": "2026-07-17",
+    "endDate": "2026-07-19",
+    "pickupTime": "09:00",
+    "returnTime": "09:00",
+    "customerName": "Jarawka",
+    "email": "",
+    "phone": "",
+    "notes": "",
+    "totalDays": 3,
+    "totalPrice": 600,
+    "status": "confirmed",
+    "source": "phone",
+    "createdAt": "2026-07-10T06:49:08.871Z"
+  }
+]
