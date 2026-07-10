@@ -113,5 +113,20 @@
       "/fleet/fiat-ducato-maxi-hd/06.jpeg",
       "/fleet/fiat-ducato-maxi-hd/07.jpeg"
     ]
+  },
+  {
+    "id": "renault-trafic",
+    "name": "Renault Trafic",
+    "type": "9 osób",
+    "category": "osobowe",
+    "year": 2025,
+    "dailyPrice": 250,
+    "tone": "white",
+    "description": "Nowoczesny, regularnie serwisowany pojazd gotowy na Twoją trasę.",
+    "features": [
+      "Pełne ubezpieczenie",
+      "Klimatyzacja"
+    ],
+    "images": []
   }
 ]
