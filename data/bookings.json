@@ -34,5 +34,23 @@
     "status": "confirmed",
     "source": "phone",
     "createdAt": "2026-07-10T07:04:18.351Z"
+  },
+  {
+    "id": "CB-2026-9196F3",
+    "vehicleId": "toyota-proace",
+    "vehicleName": "Toyota ProAce",
+    "startDate": "2026-08-07",
+    "endDate": "2026-08-16",
+    "pickupTime": "09:00",
+    "returnTime": "09:00",
+    "customerName": "Wakacje Chorwacja",
+    "email": "",
+    "phone": "",
+    "notes": "",
+    "totalDays": 10,
+    "totalPrice": 0,
+    "status": "confirmed",
+    "source": "phone",
+    "createdAt": "2026-07-10T07:08:45.249Z"
   }
 ]
