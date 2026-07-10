@@ -124,5 +124,23 @@
     "status": "confirmed",
     "source": "phone",
     "createdAt": "2026-07-10T07:24:21.218Z"
+  },
+  {
+    "id": "CB-2026-A9287C",
+    "vehicleId": "toyota-proace-business",
+    "vehicleName": "Toyota ProAce Business",
+    "startDate": "2026-08-29",
+    "endDate": "2026-09-12",
+    "pickupTime": "09:00",
+    "returnTime": "09:00",
+    "customerName": "Warszawa od 28.08",
+    "email": "",
+    "phone": "",
+    "notes": "",
+    "totalDays": 15,
+    "totalPrice": 3750,
+    "status": "confirmed",
+    "source": "phone",
+    "createdAt": "2026-07-10T07:26:41.077Z"
   }
 ]
