@@ -160,5 +160,23 @@
     "status": "confirmed",
     "source": "phone",
     "createdAt": "2026-07-10T07:27:18.021Z"
+  },
+  {
+    "id": "CB-2026-917C6F",
+    "vehicleId": "toyota-proace",
+    "vehicleName": "Toyota ProAce",
+    "startDate": "2026-08-21",
+    "endDate": "2026-08-23",
+    "pickupTime": "09:00",
+    "returnTime": "09:00",
+    "customerName": "Herbi Kawalerski Miłosza",
+    "email": "",
+    "phone": "",
+    "notes": "",
+    "totalDays": 3,
+    "totalPrice": 600,
+    "status": "confirmed",
+    "source": "phone",
+    "createdAt": "2026-07-10T07:28:53.863Z"
   }
 ]
