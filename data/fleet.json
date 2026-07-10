@@ -127,6 +127,13 @@
       "Pełne ubezpieczenie",
       "Klimatyzacja"
     ],
-    "images": []
+    "images": [
+      "/api/fleet-images/08959b7a-dd3c-4c42-8024-df2a4a71cbf1.jpg",
+      "/api/fleet-images/f84cd056-deeb-4ec2-9fff-02434c456f75.jpg",
+      "/api/fleet-images/0d1edf8e-5ff0-45d4-8dbf-03521d9a4167.jpg",
+      "/api/fleet-images/88583a26-afe9-4e35-b12a-ee8b1767e015.jpg",
+      "/api/fleet-images/92fa8910-56c1-4db1-9c45-51c5afbb8db3.jpg",
+      "/api/fleet-images/0acc6e3c-c07e-4daa-83bf-b490262358c1.jpg"
+    ]
   }
 ]
