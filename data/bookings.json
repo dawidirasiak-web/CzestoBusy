@@ -304,5 +304,23 @@
     "status": "confirmed",
     "source": "phone",
     "createdAt": "2026-07-11T09:22:31.998Z"
+  },
+  {
+    "id": "CB-2026-78C9C3",
+    "vehicleId": "renault-trafic-1",
+    "vehicleName": "Renault Trafic",
+    "startDate": "2026-08-28",
+    "endDate": "2026-08-31",
+    "pickupTime": "09:00",
+    "returnTime": "09:00",
+    "customerName": "Siemianowice Śląskie?",
+    "email": "",
+    "phone": "",
+    "notes": "",
+    "totalDays": 4,
+    "totalPrice": 1000,
+    "status": "confirmed",
+    "source": "phone",
+    "createdAt": "2026-07-11T09:23:40.825Z"
   }
 ]
