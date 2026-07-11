@@ -196,5 +196,23 @@
     "status": "confirmed",
     "source": "phone",
     "createdAt": "2026-07-11T09:18:52.584Z"
+  },
+  {
+    "id": "CB-2026-7F7787",
+    "vehicleId": "renault-trafic",
+    "vehicleName": "Renault Trafic",
+    "startDate": "2026-07-31",
+    "endDate": "2026-08-08",
+    "pickupTime": "09:00",
+    "returnTime": "09:00",
+    "customerName": "Rzeszów",
+    "email": "",
+    "phone": "",
+    "notes": "",
+    "totalDays": 9,
+    "totalPrice": 2250,
+    "status": "confirmed",
+    "source": "phone",
+    "createdAt": "2026-07-11T09:19:55.131Z"
   }
 ]
