@@ -358,5 +358,23 @@
     "status": "confirmed",
     "source": "phone",
     "createdAt": "2026-07-11T09:27:05.573Z"
+  },
+  {
+    "id": "CB-2026-D8C34F",
+    "vehicleId": "fiat-ducato-maxi",
+    "vehicleName": "Fiat Ducato MAXI",
+    "startDate": "2026-08-10",
+    "endDate": "2026-08-14",
+    "pickupTime": "09:00",
+    "returnTime": "09:00",
+    "customerName": "Herbi Orlen 2",
+    "email": "",
+    "phone": "",
+    "notes": "",
+    "totalDays": 5,
+    "totalPrice": 1250,
+    "status": "confirmed",
+    "source": "phone",
+    "createdAt": "2026-07-11T09:27:17.742Z"
   }
 ]
