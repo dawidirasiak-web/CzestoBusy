@@ -250,5 +250,23 @@
     "status": "confirmed",
     "source": "phone",
     "createdAt": "2026-07-11T09:21:05.239Z"
+  },
+  {
+    "id": "CB-2026-B82479",
+    "vehicleId": "renault-trafic-1",
+    "vehicleName": "Renault Trafic",
+    "startDate": "2026-07-12",
+    "endDate": "2026-07-23",
+    "pickupTime": "09:00",
+    "returnTime": "09:00",
+    "customerName": "Warszawa",
+    "email": "",
+    "phone": "",
+    "notes": "",
+    "totalDays": 12,
+    "totalPrice": 3000,
+    "status": "confirmed",
+    "source": "phone",
+    "createdAt": "2026-07-11T09:21:35.115Z"
   }
 ]
