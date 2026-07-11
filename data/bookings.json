@@ -232,5 +232,23 @@
     "status": "confirmed",
     "source": "phone",
     "createdAt": "2026-07-11T09:20:40.416Z"
+  },
+  {
+    "id": "CB-2026-186AE8",
+    "vehicleId": "renault-trafic",
+    "vehicleName": "Renault Trafic",
+    "startDate": "2026-08-21",
+    "endDate": "2026-09-05",
+    "pickupTime": "09:00",
+    "returnTime": "09:00",
+    "customerName": "Jelenia Góra",
+    "email": "",
+    "phone": "",
+    "notes": "",
+    "totalDays": 16,
+    "totalPrice": 4000,
+    "status": "confirmed",
+    "source": "phone",
+    "createdAt": "2026-07-11T09:21:05.239Z"
   }
 ]
