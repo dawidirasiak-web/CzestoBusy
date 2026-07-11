@@ -178,5 +178,23 @@
     "status": "confirmed",
     "source": "phone",
     "createdAt": "2026-07-10T07:28:53.863Z"
+  },
+  {
+    "id": "CB-2026-F2C747",
+    "vehicleId": "renault-trafic",
+    "vehicleName": "Renault Trafic",
+    "startDate": "2026-07-18",
+    "endDate": "2026-07-27",
+    "pickupTime": "09:00",
+    "returnTime": "09:00",
+    "customerName": "Skierniewice",
+    "email": "",
+    "phone": "",
+    "notes": "",
+    "totalDays": 10,
+    "totalPrice": 2500,
+    "status": "confirmed",
+    "source": "phone",
+    "createdAt": "2026-07-11T09:18:52.584Z"
   }
 ]
