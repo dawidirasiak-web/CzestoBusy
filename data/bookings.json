@@ -448,5 +448,23 @@
     "status": "confirmed",
     "source": "phone",
     "createdAt": "2026-07-11T09:29:21.137Z"
+  },
+  {
+    "id": "CB-2026-6BC81B",
+    "vehicleId": "toyota-proace-max",
+    "vehicleName": "Toyota ProAce Max",
+    "startDate": "2026-07-23",
+    "endDate": "2026-07-31",
+    "pickupTime": "09:00",
+    "returnTime": "09:00",
+    "customerName": "Orlen Toyota 1",
+    "email": "",
+    "phone": "",
+    "notes": "",
+    "totalDays": 9,
+    "totalPrice": 0,
+    "status": "confirmed",
+    "source": "phone",
+    "createdAt": "2026-07-11T09:31:27.499Z"
   }
 ]
