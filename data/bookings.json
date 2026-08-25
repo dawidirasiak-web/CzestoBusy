@@ -538,5 +538,23 @@
     "status": "confirmed",
     "source": "phone",
     "createdAt": "2026-07-11T09:32:24.053Z"
+  },
+  {
+    "id": "CB-2026-163EA6",
+    "vehicleId": "toyota-proace-max",
+    "vehicleName": "Toyota ProAce Max",
+    "startDate": "2026-08-29",
+    "endDate": "2026-08-30",
+    "pickupTime": "09:00",
+    "returnTime": "12:00",
+    "customerName": "Dawid Garbiec",
+    "email": "dawidgarbieckontaktrm@op.pl",
+    "phone": "881327070",
+    "notes": "",
+    "totalDays": 2,
+    "totalPrice": 460,
+    "status": "confirmed",
+    "source": "online",
+    "createdAt": "2026-08-25T10:52:00.848Z"
   }
 ]
