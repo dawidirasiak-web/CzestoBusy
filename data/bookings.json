@@ -556,5 +556,23 @@
     "status": "confirmed",
     "source": "online",
     "createdAt": "2026-08-25T10:52:00.848Z"
+  },
+  {
+    "id": "CB-2026-7DC8CE",
+    "vehicleId": "toyota-proace",
+    "vehicleName": "Toyota ProAce",
+    "startDate": "2026-10-25",
+    "endDate": "2026-10-26",
+    "pickupTime": "08:00",
+    "returnTime": "08:00",
+    "customerName": "Patrycja Halusiak",
+    "email": "patrycja_halusiak@wp.pl",
+    "phone": "+48695236656",
+    "notes": "",
+    "totalDays": 2,
+    "totalPrice": 400,
+    "status": "confirmed",
+    "source": "online",
+    "createdAt": "2026-09-07T19:10:55.988Z"
   }
 ]
