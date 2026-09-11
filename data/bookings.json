@@ -574,5 +574,23 @@
     "status": "confirmed",
     "source": "online",
     "createdAt": "2026-09-07T19:10:55.988Z"
+  },
+  {
+    "id": "CB-2026-E1C2E7",
+    "vehicleId": "toyota-proace-max",
+    "vehicleName": "Toyota ProAce Max",
+    "startDate": "2026-09-11",
+    "endDate": "2026-09-13",
+    "pickupTime": "20:00",
+    "returnTime": "15:00",
+    "customerName": "Kamila Tang",
+    "email": "kamilatang04@gmail.com",
+    "phone": "512679100",
+    "notes": "Kierowcą pojazdu będzie Norbert Lesiak",
+    "totalDays": 3,
+    "totalPrice": 690,
+    "status": "confirmed",
+    "source": "online",
+    "createdAt": "2026-09-11T05:51:46.535Z"
   }
 ]
