@@ -610,5 +610,23 @@
     "status": "confirmed",
     "source": "online",
     "createdAt": "2026-09-14T15:59:44.932Z"
+  },
+  {
+    "id": "CB-2026-DBF77B",
+    "vehicleId": "toyota-proace-max",
+    "vehicleName": "Toyota ProAce Max",
+    "startDate": "2026-09-17",
+    "endDate": "2026-09-17",
+    "pickupTime": "09:00",
+    "returnTime": "16:00",
+    "customerName": "Grzegorz Kopeć",
+    "email": "rancoro@wp.pl",
+    "phone": "506412219",
+    "notes": "transport motocykla",
+    "totalDays": 1,
+    "totalPrice": 230,
+    "status": "confirmed",
+    "source": "online",
+    "createdAt": "2026-09-15T09:14:30.774Z"
   }
 ]
