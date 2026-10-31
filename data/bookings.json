@@ -610,5 +610,23 @@
     "status": "confirmed",
     "source": "online",
     "createdAt": "2026-09-14T15:59:44.932Z"
+  },
+  {
+    "id": "CB-2026-9E9C1E",
+    "vehicleId": "toyota-proace-max",
+    "vehicleName": "Toyota ProAce Max",
+    "startDate": "2026-10-31",
+    "endDate": "2026-10-31",
+    "pickupTime": "11:30",
+    "returnTime": "16:00",
+    "customerName": "Piotr Ociepa",
+    "email": "p.ociepa@outlook.com",
+    "phone": "726581886",
+    "notes": "",
+    "totalDays": 1,
+    "totalPrice": 230,
+    "status": "confirmed",
+    "source": "online",
+    "createdAt": "2026-10-31T09:59:02.172Z"
   }
 ]
