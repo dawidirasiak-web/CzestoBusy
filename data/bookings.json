@@ -628,5 +628,23 @@
     "status": "confirmed",
     "source": "online",
     "createdAt": "2026-10-31T09:59:02.172Z"
+  },
+  {
+    "id": "CB-2026-5134F9",
+    "vehicleId": "toyota-proace",
+    "vehicleName": "Toyota ProAce",
+    "startDate": "2026-11-14",
+    "endDate": "2026-11-21",
+    "pickupTime": "09:00",
+    "returnTime": "09:00",
+    "customerName": "Rafał",
+    "email": "",
+    "phone": "555555555",
+    "notes": "",
+    "totalDays": 8,
+    "totalPrice": 3000,
+    "status": "confirmed",
+    "source": "phone",
+    "createdAt": "2026-10-31T09:59:11.800Z"
   }
 ]
