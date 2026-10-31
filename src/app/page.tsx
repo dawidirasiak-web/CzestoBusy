@@ -1,13 +1,22 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { ScrollVan } from "@/components/scroll-van";
 import { FleetReveal } from "@/components/fleet-reveal";
 import { HeaderSocials } from "@/components/header-socials";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteLogo } from "@/components/site-logo";
 import { listFleet } from "@/lib/fleet";
+import { absoluteUrl, siteName } from "@/lib/site-config";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: { absolute: "CzęstoBusy – wynajem busów w Częstochowie" },
+  description:
+    "Wynajem busów 9-osobowych, aut osobowych i dostawczych w Częstochowie. Sprawdź flotę i zarezerwuj: 883 066 661.",
+  alternates: { canonical: absoluteUrl("/") },
+};
 
 const ArrowIcon = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5" /></svg>
@@ -50,9 +59,24 @@ const features = [
 
 export default async function Home() {
   const fleet = await listFleet();
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "AutoRental"],
+    "@id": `${absoluteUrl("/")}#business`,
+    name: siteName,
+    url: absoluteUrl("/"),
+    logo: absoluteUrl("/images/czestobusy-logo.png"),
+    image: absoluteUrl("/images/share-logo.png"),
+    telephone: "+48 883 066 661",
+    areaServed: "Częstochowa i okolice",
+  };
 
   return (
     <main id="top">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
+      />
       <header className="site-header header-clean">
         <SiteLogo href="/#top" />
         <nav aria-label="Nawigacja główna">

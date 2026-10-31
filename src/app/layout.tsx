@@ -60,11 +60,12 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
       { url: "/favicon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/favicon-48.png", type: "image/png", sizes: "48x48" },
+      { url: "/favicon.ico", type: "image/x-icon", sizes: "48x48" },
     ],
-    shortcut: "/favicon-192.png",
-    apple: "/images/czestobusy-logo.png",
+    shortcut: "/favicon.ico",
+    apple: "/favicon-192.png",
   },
   robots: {
     index: true,
